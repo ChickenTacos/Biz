@@ -1,0 +1,6 @@
+# Found a security problem on this site or in something we manage? Thank you.
+# Please email us and give us a reasonable chance to fix it before you share details.
+Contact: mailto:security@lanyard.example
+Expires: 2027-11-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://lanyard.example/.well-known/security.txt

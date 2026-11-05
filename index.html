@@ -1,0 +1,877 @@
+<!doctype html>
+<!--
+     __
+    \  /     lanyard_  managed IT for companies without an IT department
+     ||      Victoria, BC
+    [##]
+    ####     Reading the source? Good. That's the kind of curiosity we hire for.
+             Press ` (backtick) anywhere on the page to open a terminal. Type "help".
+             No frameworks, no trackers, no cookies. Hand-written HTML, CSS and JS.
+-->
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lanyard Systems · Managed IT in Victoria, BC</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Lanyard is the IT department for companies that don't have one: endpoint management, onboarding, offboarding, help desk and IT projects. Based in Victoria, BC.">
+<meta name="author" content="Lanyard Systems">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#1f2bff">
+<link rel="canonical" href="https://lanyard.example/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lanyard Systems">
+<meta property="og:title" content="Lanyard Systems · First login to last logoff.">
+<meta property="og:description" content="Managed IT for companies without an IT department. Endpoint management, onboarding, offboarding and IT projects, from Victoria, BC.">
+<meta property="og:url" content="https://lanyard.example/">
+<meta property="og:image" content="https://lanyard.example/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Lanyard logo on a blue field with the line: first login to last logoff.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/martian-mono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-next.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/main.css">
+<script src="assets/js/early.js"></script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/util.js" defer></script>
+<script src="assets/js/device.js" defer></script>
+<script src="assets/js/boot.js" defer></script>
+<script src="assets/js/ascii.js" defer></script>
+<script src="assets/js/badge.js" defer></script>
+<script src="assets/js/pipeline.js" defer></script>
+<script src="assets/js/fleet.js" defer></script>
+<script src="assets/js/contact.js" defer></script>
+<script src="assets/js/terminal.js" defer></script>
+<script src="assets/js/ui.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Lanyard Systems",
+  "description": "Managed IT for companies without an IT department: endpoint management, onboarding, offboarding, help desk and IT projects.",
+  "url": "https://lanyard.example/",
+  "email": "hello@lanyard.example",
+  "logo": "https://lanyard.example/assets/brand/icon.svg",
+  "image": "https://lanyard.example/assets/img/og-image.png",
+  "address": { "@type": "PostalAddress", "addressLocality": "Victoria", "addressRegion": "BC", "addressCountry": "CA" },
+  "areaServed": [{ "@type": "City", "name": "Victoria" }, { "@type": "Country", "name": "Canada" }],
+  "founder": { "@type": "Person", "name": "Hallam Pak", "jobTitle": "Founder" },
+  "knowsAbout": ["Endpoint management", "Employee onboarding", "Employee offboarding", "Microsoft Intune", "Windows 11 migration", "Microsoft 365 administration", "IT asset management"]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Boot screen. Hidden unless early.js decides to play it (first visit per session). -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__inner">
+    <div class="boot__top">
+      <pre class="boot__log" data-boot-log></pre>
+      <svg class="mark boot__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
+    </div>
+    <div class="boot__bottom">
+      <span>Press <kbd>Esc</kbd> to skip · values read locally, nothing leaves your browser</span>
+      <span class="boot__pct" data-boot-pct>000</span>
+    </div>
+  </div>
+</div>
+
+<!-- tmux-style status bar -->
+<header class="tmux" data-tmux>
+  <a class="tmux__brand" href="#home" aria-label="Lanyard Systems, back to top">
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
+    <span class="tmux__word">lanyard<span class="blink">_</span></span>
+  </a>
+  <nav class="tmux__wins" aria-label="Sections">
+    <a href="#home" data-win="home"><b>0</b>home</a>
+    <a href="#services" data-win="services"><b>1</b>services</a>
+    <a href="#lifecycle" data-win="lifecycle"><b>2</b>lifecycle</a>
+    <a href="#fleet" data-win="fleet"><b>3</b>fleet</a>
+    <a href="#plans" data-win="plans"><b>4</b>plans</a>
+    <a href="#about" data-win="about"><b>5</b>about</a>
+    <a href="#contact" data-win="contact"><b>6</b>contact</a>
+  </nav>
+  <div class="tmux__right">
+    <span class="tmux__ruler" data-ruler aria-hidden="true">Top</span>
+    <span class="tmux__clock" data-clock title="Local time in Victoria, BC">--:-- PT</span>
+    <button class="tmux__btn" type="button" data-theme-toggle aria-label="Switch to light theme"><span aria-hidden="true">◐</span></button>
+    <button class="tmux__btn" type="button" data-term-open aria-label="Open terminal" aria-keyshortcuts="`"><span aria-hidden="true">&gt;_</span></button>
+    <button class="tmux__btn tmux__menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu">menu</button>
+  </div>
+</header>
+
+<div class="menu" id="menu" data-menu hidden>
+  <p class="menu__cmd">$ ls ~</p>
+  <nav aria-label="Site menu">
+    <a href="#home">home</a>
+    <a href="#services">services/</a>
+    <a href="#lifecycle">lifecycle/</a>
+    <a href="#fleet">fleet/</a>
+    <a href="#process">process/</a>
+    <a href="#plans">plans/</a>
+    <a href="#about">about/</a>
+    <a href="#faq">faq.man</a>
+    <a href="#contact">contact.sh</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- HERO ================================================================ -->
+<section class="hero" id="home" aria-labelledby="hero-title" data-section="home">
+  <div class="hero__stage" data-ascii-stage>
+    <canvas class="hero__canvas" data-ascii aria-hidden="true"></canvas>
+<pre class="hero__fallback" aria-hidden="true">
+     .-------------------------.
+     |  .-------------------.  |
+     |  |       ( o )       |  |
+     |  |   [ ********_ ]   |  |
+     |  |                   |  |
+     |  '-------------------'  |
+     '-------------------------'
+   .-----------------------------.
+  /  [][][][][][][][][][][][][][] \
+ /  [][][][][][][][][][][][][][][] \
+'-----------------------------------'</pre>
+  </div>
+  <div class="hero__inner wrap">
+    <p class="eyebrow eyebrow--on-blue">( managed it · victoria, bc · est. 2026 )</p>
+    <h1 class="hero__title" id="hero-title"><span>first login</span> <span>to last</span> <span>logoff<i>.</i></span></h1>
+    <div class="hero__foot">
+      <p class="hero__lead">Lanyard is the IT department for companies that don't have one. We set up, secure and look after every laptop, phone and account, from a new hire's first morning to their last day.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--yellow" href="#contact">Open a ticket <span aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost-light" href="#lifecycle" data-run-demo>Watch an onboarding run</a>
+      </div>
+      <ul class="hero__status">
+        <li><span class="dot dot--ok" aria-hidden="true"></span>accepting new clients</li>
+        <li>on-site across Greater Victoria</li>
+        <li>remote across Canada</li>
+        <li><span data-clock-long>--:--</span> in Victoria</li>
+      </ul>
+    </div>
+    <div class="hero__caption" aria-hidden="true">
+      <p><span class="hero__tag" data-ascii-index>[ endpoint 1/4 ]</span> <span data-ascii-name>laptop · windows 11</span></p>
+      <p data-ascii-state>enrolled ✓ encrypted ✓ patched ✓</p>
+      <p class="hero__hint">move your cursor over it to inspect · click to switch</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOG TICKER -->
+<div class="ticker" role="marquee" aria-label="Example activity log">
+  <span class="ticker__label">tail -f demo.log</span>
+  <div class="ticker__track" data-ticker>
+    <ul class="ticker__list">
+      <li><time>09:00:02</time> onboard <b>j.lee</b> ready in 38m <em>ok</em></li>
+      <li><time>09:14:51</time> patch ring-0 pilot <b>4/4</b> installed <em>ok</em></li>
+      <li><time>10:02:17</time> bitlocker key escrowed <b>LY-LT-023</b> <em>ok</em></li>
+      <li><time>11:47:30</time> ticket <b>#4821</b> printer offline · fixed in 12m <em>ok</em></li>
+      <li><time>13:05:09</time> licence audit <b>3 unused</b> reclaimed <em>ok</em></li>
+      <li><time>14:44:30</time> compliance <b>61/64</b> · 3 remediating <em class="warn">warn</em></li>
+      <li><time>16:20:12</time> win11 upgrade <b>LY-DT-007</b> 22H2 → 25H2 <em>ok</em></li>
+      <li><time>17:00:00</time> offboard <b>s.ortiz</b> access closed <em>ok</em></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SERVICES ============================================================ -->
+<section class="sec" id="services" aria-labelledby="services-title" data-section="services">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-head__path"><span>~/services</span><span aria-hidden="true">drwxr-xr-x</span></p>
+      <h2 class="h2" id="services-title" data-scramble>what we look after<i>.</i></h2>
+      <p class="sec-head__intro">Pick one service or hand us the lot. Each one runs on written procedures, so you always know what was done and why.</p>
+    </header>
+
+    <div class="ls">
+      <p class="ls__cmd" aria-hidden="true"><span class="prompt">$</span> ls -l ~/services <span class="muted">· total 6</span></p>
+
+      <details class="ls__row" open>
+        <summary>
+          <span class="ls__perm" aria-hidden="true">drwxr-xr-x</span>
+          <span class="ls__own" aria-hidden="true">lanyard ops</span>
+          <span class="ls__name">endpoint-management<span class="ls__slash">/</span></span>
+          <span class="ls__brief">Every laptop, desktop, phone and tablet enrolled, encrypted, patched and accounted for.</span>
+          <span class="ls__toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="ls__body">
+          <div>
+            <ul class="checks">
+              <li>Enrolment for Windows, macOS, iPhone, iPad and Android</li>
+              <li>Zero-touch setup: new devices configure themselves on first sign-in</li>
+              <li>Update rings, so patches reach a few pilot machines before everyone else</li>
+              <li>Disk encryption with recovery keys stored where you can get them</li>
+              <li>App deployment and licence tracking</li>
+              <li>Remote lock and wipe for lost or stolen devices</li>
+              <li>A live asset register: who has what, and since when</li>
+            </ul>
+            <p class="tags"><span>Microsoft Intune</span><span>Windows Autopilot</span><span>Apple Business Manager</span><span>Android Enterprise</span><span>BitLocker</span><span>FileVault</span></p>
+          </div>
+          <figure class="code">
+            <figcaption>compliance.ps1</figcaption>
+<pre><code><span class="c"># Which devices are out of compliance right now?</span>
+Get-MgDeviceManagementManagedDevice -All |
+  Where-Object ComplianceState -ne <span class="s">'compliant'</span> |
+  Select-Object DeviceName, UserPrincipalName,
+    OperatingSystem, LastSyncDateTime</code></pre>
+          </figure>
+        </div>
+      </details>
+
+      <details class="ls__row">
+        <summary>
+          <span class="ls__perm" aria-hidden="true">drwxr-xr-x</span>
+          <span class="ls__own" aria-hidden="true">lanyard ops</span>
+          <span class="ls__name">onboarding<span class="ls__slash">/</span></span>
+          <span class="ls__brief">New hires sign in on day one to a laptop that's ready, with the right access and nothing extra.</span>
+          <span class="ls__toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="ls__body">
+          <div>
+            <ul class="checks">
+              <li>Account, mailbox and licences created before the start date</li>
+              <li>Groups, shared drives and app access set by role</li>
+              <li>Multi-factor sign-in ready before the first login</li>
+              <li>Laptop configured and delivered to the office or their home</li>
+              <li>A welcome guide written in plain language</li>
+              <li>A first-morning check-in so nobody is stuck waiting</li>
+            </ul>
+            <p class="tags"><span>Microsoft 365</span><span>Entra ID</span><span>Google Workspace</span><span>Temporary Access Pass</span></p>
+          </div>
+          <figure class="code">
+            <figcaption>day-one.ps1</figcaption>
+<pre><code><span class="c"># A one-time pass so a new hire can set up MFA on day one</span>
+New-MgUserAuthenticationTemporaryAccessPassMethod `
+  -UserId $upn -LifetimeInMinutes 480</code></pre>
+          </figure>
+        </div>
+      </details>
+
+      <details class="ls__row">
+        <summary>
+          <span class="ls__perm" aria-hidden="true">drwxr-xr-x</span>
+          <span class="ls__own" aria-hidden="true">lanyard ops</span>
+          <span class="ls__name">offboarding<span class="ls__slash">/</span></span>
+          <span class="ls__brief">When someone leaves, their access closes on time and their laptop comes back clean.</span>
+          <span class="ls__toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="ls__body">
+          <div>
+            <ul class="checks">
+              <li>Sign-in blocked and every session ended at an agreed time</li>
+              <li>Mailbox and files handed to a manager, nothing deleted by accident</li>
+              <li>Licences reclaimed so you stop paying for empty seats</li>
+              <li>Device wiped, returned and checked back into the asset register</li>
+              <li>Shared passwords and door codes flagged for rotation</li>
+              <li>A written record of every step, for your files</li>
+            </ul>
+            <p class="tags"><span>Entra ID</span><span>Exchange Online</span><span>OneDrive</span><span>Intune</span></p>
+          </div>
+          <figure class="code">
+            <figcaption>last-day.ps1</figcaption>
+<pre><code><span class="c"># 17:00 on the last day: block sign-in, end every session</span>
+Update-MgUser -UserId $upn -AccountEnabled:$false
+Revoke-MgUserSignInSession -UserId $upn
+<span class="c"># Keep the mail, hand it to their manager</span>
+Set-Mailbox -Identity $upn -Type Shared</code></pre>
+          </figure>
+        </div>
+      </details>
+
+      <details class="ls__row">
+        <summary>
+          <span class="ls__perm" aria-hidden="true">drwxr-xr-x</span>
+          <span class="ls__own" aria-hidden="true">lanyard ops</span>
+          <span class="ls__name">help-desk<span class="ls__slash">/</span></span>
+          <span class="ls__brief">One inbox for every IT question, answered by someone who already knows your setup.</span>
+          <span class="ls__toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="ls__body">
+          <div>
+            <ul class="checks">
+              <li>Remote support for everyday problems</li>
+              <li>On-site visits across Greater Victoria</li>
+              <li>Microsoft 365 and Google Workspace administration</li>
+              <li>Printers, Wi-Fi, phones and meeting rooms</li>
+              <li>Vendor calls handled for you</li>
+              <li>Short guides for the fixes people need more than once</li>
+            </ul>
+            <p class="tags"><span>Microsoft 365</span><span>Google Workspace</span><span>Printers and MFDs</span><span>Wi-Fi</span><span>VoIP</span></p>
+          </div>
+          <figure class="code">
+            <figcaption>ticket-4821.yaml</figcaption>
+<pre><code><span class="k">ticket:</span> LY-4821
+<span class="k">from:</span> front-desk
+<span class="k">issue:</span> <span class="s">"Printer says offline"</span>
+<span class="k">cause:</span> queue pointed at an old IP address
+<span class="k">fix:</span> re-mapped queue, updated driver
+<span class="k">resolved_in:</span> 12m
+<span class="k">guide_sent:</span> printers.md</code></pre>
+          </figure>
+        </div>
+      </details>
+
+      <details class="ls__row">
+        <summary>
+          <span class="ls__perm" aria-hidden="true">drwxr-xr-x</span>
+          <span class="ls__own" aria-hidden="true">lanyard ops</span>
+          <span class="ls__name">projects<span class="ls__slash">/</span></span>
+          <span class="ls__brief">Bigger jobs with a clear scope: upgrades, hardware, audits and custom tools.</span>
+          <span class="ls__toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="ls__body">
+          <div>
+            <ul class="checks">
+              <li>Windows 11 upgrades, including machines that can't simply be reimaged</li>
+              <li>Hardware specs and purchasing, sized to the actual work</li>
+              <li>Device and licence audits that find what's missing</li>
+              <li>Office moves, cabling, network switches and Wi-Fi</li>
+              <li>Custom internal tools that replace fragile spreadsheets</li>
+              <li>Documentation and SOPs your team can follow without us</li>
+            </ul>
+            <p class="tags"><span>Windows 11</span><span>Dell · HP · Lenovo</span><span>Cisco Meraki</span><span>JavaScript</span><span>C#</span></p>
+          </div>
+          <figure class="code">
+            <figcaption>win11-ready.ps1</figcaption>
+<pre><code><span class="c"># Is this machine ready for Windows 11?</span>
+Get-Tpm | Select-Object TpmPresent, TpmReady
+Confirm-SecureBootUEFI
+Get-CimInstance Win32_Processor |
+  Select-Object Name, NumberOfCores</code></pre>
+          </figure>
+        </div>
+      </details>
+
+      <details class="ls__row ls__row--file">
+        <summary>
+          <span class="ls__perm" aria-hidden="true">-rwx------</span>
+          <span class="ls__own" aria-hidden="true">lanyard sec</span>
+          <span class="ls__name">security-baseline<span class="ls__slash">.sh</span></span>
+          <span class="ls__brief">The basics done properly on every device and account, then checked every month.</span>
+          <span class="ls__toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="ls__body">
+          <div>
+            <ul class="checks">
+              <li>Multi-factor sign-in on every account</li>
+              <li>Admin rights only where they're needed</li>
+              <li>Encryption, firewall and antivirus enforced, not hoped for</li>
+              <li>Phishing awareness for your team, in short sessions</li>
+              <li>Backups that are tested by restoring them</li>
+              <li>Passkeys and smart cards where they make sense</li>
+            </ul>
+            <p class="tags"><span>MFA</span><span>Conditional Access</span><span>Microsoft Defender</span><span>Passkeys</span><span>Smart cards (PKI)</span></p>
+          </div>
+          <figure class="code">
+            <figcaption>encryption-check.ps1</figcaption>
+<pre><code><span class="c"># Is the disk encrypted, and is protection on?</span>
+Get-BitLockerVolume -MountPoint C: |
+  Select-Object VolumeStatus, ProtectionStatus,
+    EncryptionPercentage</code></pre>
+          </figure>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- LIFECYCLE =========================================================== -->
+<section class="sec sec--alt" id="lifecycle" aria-labelledby="lifecycle-title" data-section="lifecycle">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-head__path"><span>~/lifecycle</span><span aria-hidden="true">joiners · leavers</span></p>
+      <h2 class="h2" id="lifecycle-title" data-scramble>day one and last day, done the same way every time<i>.</i></h2>
+      <p class="sec-head__intro">Most IT trouble starts at the edges of a job: a laptop that isn't ready on someone's first morning, or an account nobody closed after they left. We run both as scripted checklists. Here's what a run looks like.</p>
+    </header>
+
+    <div class="pipe" data-pipe>
+      <div class="pipe__bar">
+        <div class="pipe__tabs" role="tablist" aria-label="Pipeline">
+          <button type="button" role="tab" id="pipe-tab-joiner" aria-selected="true" aria-controls="pipe-panel" data-mode="joiner">joiner<span class="muted">.yml</span></button>
+          <button type="button" role="tab" id="pipe-tab-leaver" aria-selected="false" aria-controls="pipe-panel" data-mode="leaver" tabindex="-1">leaver<span class="muted">.yml</span></button>
+        </div>
+        <p class="pipe__meta"><span>run #<span data-run-id>1042</span></span><span class="chip" data-run-state>queued</span></p>
+        <button type="button" class="btn btn--small" data-replay>Run again</button>
+      </div>
+      <div class="pipe__body" id="pipe-panel" role="tabpanel" aria-labelledby="pipe-tab-joiner">
+        <ol class="pipe__steps" data-steps>
+          <li class="step"><span class="step__icon" aria-hidden="true"></span><span class="step__id">hr.notice</span><span class="step__text">Start date received</span><span class="step__dur"></span></li>
+          <li class="step"><span class="step__icon" aria-hidden="true"></span><span class="step__id">identity.create</span><span class="step__text">Account and mailbox created</span><span class="step__dur"></span></li>
+          <li class="step"><span class="step__icon" aria-hidden="true"></span><span class="step__id">access.assign</span><span class="step__text">Groups and licences set by role</span><span class="step__dur"></span></li>
+          <li class="step"><span class="step__icon" aria-hidden="true"></span><span class="step__id">mfa.bootstrap</span><span class="step__text">One-time pass ready for MFA setup</span><span class="step__dur"></span></li>
+          <li class="step"><span class="step__icon" aria-hidden="true"></span><span class="step__id">device.provision</span><span class="step__text">Laptop assigned and pre-configured</span><span class="step__dur"></span></li>
+          <li class="step"><span class="step__icon" aria-hidden="true"></span><span class="step__id">apps.deploy</span><span class="step__text">Apps installed for the role</span><span class="step__dur"></span></li>
+          <li class="step"><span class="step__icon" aria-hidden="true"></span><span class="step__id">policy.apply</span><span class="step__text">Security policies applied and verified</span><span class="step__dur"></span></li>
+          <li class="step"><span class="step__icon" aria-hidden="true"></span><span class="step__id">handoff</span><span class="step__text">Welcome guide sent, first-login call booked</span><span class="step__dur"></span></li>
+        </ol>
+        <div class="pipe__log">
+          <p class="pipe__logbar" aria-hidden="true"><span></span><span></span><span></span><b data-log-title>joiner.yml · output</b></p>
+          <pre class="pipe__out" data-log tabindex="0" aria-label="Pipeline output"></pre>
+        </div>
+      </div>
+      <p class="pipe__summary" data-summary aria-live="polite">Example run with made-up names. Real runs come with a written record you keep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET =============================================================== -->
+<section class="sec" id="fleet" aria-labelledby="fleet-title" data-section="fleet">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-head__path"><span>~/fleet</span><span aria-hidden="true">64 endpoints · demo</span></p>
+      <h2 class="h2" id="fleet-title" data-scramble>every device, accounted for<i>.</i></h2>
+      <p class="sec-head__intro">This is a demo company with 64 devices. Push an update and watch it roll out in rings: a few pilot machines first, then everyone else. Your own device is in there too, marked in yellow.</p>
+    </header>
+
+    <div class="fleet" data-fleet>
+      <div class="fleet__board">
+        <div class="fleet__legend" aria-hidden="true">
+          <span><i class="sw sw--ok"></i>compliant</span>
+          <span><i class="sw sw--pend"></i>update pending</span>
+          <span><i class="sw sw--run"></i>installing</span>
+          <span><i class="sw sw--bad"></i>needs attention</span>
+          <span><i class="sw sw--off"></i>offline</span>
+          <span><i class="sw sw--you"></i>you</span>
+        </div>
+        <div class="fleet__grid" data-fleet-grid role="grid" aria-label="Demo device fleet. Use arrow keys to move between devices." tabindex="0"></div>
+        <noscript><p class="fleet__noscript">The interactive fleet needs JavaScript. In short: every device is enrolled, encrypted and patched in rings, and anything that drifts out of compliance gets fixed.</p></noscript>
+      </div>
+      <aside class="fleet__panel" aria-label="Fleet controls and details">
+        <dl class="kpis" data-kpis>
+          <div><dt>compliant</dt><dd data-kpi="ok">--</dd></div>
+          <div><dt>encrypted</dt><dd data-kpi="enc">--</dd></div>
+          <div><dt>up to date</dt><dd data-kpi="upd">--</dd></div>
+          <div><dt>needs attention</dt><dd data-kpi="bad">--</dd></div>
+        </dl>
+        <div class="rings" data-rings>
+          <div class="ring"><span>ring 0 · pilot</span><span class="ring__bar"><i data-ring="0"></i></span><span data-ring-count="0">0/0</span></div>
+          <div class="ring"><span>ring 1 · early</span><span class="ring__bar"><i data-ring="1"></i></span><span data-ring-count="1">0/0</span></div>
+          <div class="ring"><span>ring 2 · broad</span><span class="ring__bar"><i data-ring="2"></i></span><span data-ring-count="2">0/0</span></div>
+        </div>
+        <div class="fleet__actions">
+          <button type="button" class="btn btn--blue" data-fleet-act="push">Push update</button>
+          <button type="button" class="btn" data-fleet-act="fix">Fix issues</button>
+          <button type="button" class="btn btn--text" data-fleet-act="reset">Reset</button>
+        </div>
+        <div class="inspect" data-inspect aria-live="polite">
+          <p class="inspect__title">select a device</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="mydev" data-mydev>
+      <header class="mydev__head">
+        <h3 class="h3">your device, as a browser sees it</h3>
+        <p class="muted">Read by JavaScript on this page. Nothing is stored or sent anywhere.</p>
+      </header>
+      <div class="mydev__verdict" data-verdict>
+        <p>Scanning…</p>
+      </div>
+      <div class="mydev__cols">
+        <div>
+          <p class="mydev__label">what your browser told us</p>
+          <dl class="facts" data-facts><div><dt>status</dt><dd>needs JavaScript</dd></div></dl>
+        </div>
+        <div>
+          <p class="mydev__label">what a browser can't see</p>
+          <ul class="unknowns">
+            <li><span>Disk encryption</span><b>unknown</b></li>
+            <li><span>OS patch level</span><b>unknown</b></li>
+            <li><span>Firewall and antivirus</span><b>unknown</b></li>
+            <li><span>Local admin rights</span><b>unknown</b></li>
+            <li><span>Screen lock policy</span><b>unknown</b></li>
+            <li><span>Backups</span><b>unknown</b></li>
+          </ul>
+          <p class="mydev__pitch">On a managed device, all six of these are reported, enforced and fixed automatically. That's the gap endpoint management closes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS ============================================================= -->
+<section class="sec sec--alt" id="process" aria-labelledby="process-title" data-section="process">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-head__path"><span>~/process</span><span aria-hidden="true">6 hops</span></p>
+      <h2 class="h2" id="process-title" data-scramble>how we start<i>.</i></h2>
+      <p class="sec-head__intro">Six steps from first call to a company that runs itself. Typical timings for a team of 10 to 30 people.</p>
+    </header>
+    <div class="trace">
+      <p class="trace__cmd"><span class="prompt">$</span> traceroute your-company <span class="muted">· 6 hops max</span></p>
+      <ol class="trace__hops">
+        <li><span class="trace__n">1</span><span class="trace__name">intro call</span><span class="trace__t">30 min</span><span class="trace__d">Free. We learn how your team works and where IT gets in the way.</span></li>
+        <li><span class="trace__n">2</span><span class="trace__name">audit</span><span class="trace__t">1–2 wk</span><span class="trace__d">Every device, account, licence and app, written down in one place.</span></li>
+        <li><span class="trace__n">3</span><span class="trace__name">baseline</span><span class="trace__t">1 wk</span><span class="trace__d">Security settings, policies and documentation agreed with you.</span></li>
+        <li><span class="trace__n">4</span><span class="trace__name">enrol</span><span class="trace__t">1–2 wk</span><span class="trace__d">Devices brought under management a group at a time, with no lost work.</span></li>
+        <li><span class="trace__n">5</span><span class="trace__name">run</span><span class="trace__t">ongoing</span><span class="trace__d">Help desk, joiners and leavers, patching and monitoring.</span></li>
+        <li><span class="trace__n">6</span><span class="trace__name">report</span><span class="trace__t">monthly</span><span class="trace__d">One page: compliance, assets, licences and tickets.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS =============================================================== -->
+<section class="sec" id="plans" aria-labelledby="plans-title" data-section="plans">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-head__path"><span>~/plans</span><span aria-hidden="true">lanyard --help</span></p>
+      <h2 class="h2" id="plans-title" data-scramble>three ways to work together<i>.</i></h2>
+      <p class="sec-head__intro">Every plan starts with a free intro call and an audit. You get a fixed number before you commit to anything.</p>
+    </header>
+    <div class="plans">
+      <article class="plan plan--main">
+        <p class="plan__flag">--fully-managed</p>
+        <h3 class="plan__title">we're your IT department</h3>
+        <p class="plan__for">For teams with no IT staff.</p>
+        <ul class="checks">
+          <li>Help desk for everyone on the team</li>
+          <li>Endpoint management for every device</li>
+          <li>Joiners and leavers, start to finish</li>
+          <li>Security baseline and monthly checks</li>
+          <li>Vendors and renewals handled</li>
+          <li>Monthly one-page report</li>
+        </ul>
+        <p class="plan__price">Monthly, per person</p>
+        <a class="btn btn--yellow" href="#contact" data-plan="fully-managed">Start here <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="plan">
+        <p class="plan__flag">--co-managed</p>
+        <h3 class="plan__title">backup for your IT person</h3>
+        <p class="plan__for">For teams with one IT person who needs a second pair of hands.</p>
+        <ul class="checks">
+          <li>Endpoint management and patching</li>
+          <li>Overflow tickets and holiday cover</li>
+          <li>Joiner and leaver runs on request</li>
+          <li>Shared documentation and procedures</li>
+          <li>Your person keeps the keys</li>
+        </ul>
+        <p class="plan__price">Monthly, per device</p>
+        <a class="btn" href="#contact" data-plan="co-managed">Start here <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="plan">
+        <p class="plan__flag">--project</p>
+        <h3 class="plan__title">one job, done properly</h3>
+        <p class="plan__for">For a defined piece of work.</p>
+        <ul class="checks">
+          <li>Windows 11 upgrades</li>
+          <li>Office moves and network setup</li>
+          <li>Device and licence audits</li>
+          <li>Microsoft 365 or Google Workspace setup</li>
+          <li>Custom tools and automation</li>
+        </ul>
+        <p class="plan__price">Fixed quote after a free call</p>
+        <a class="btn" href="#contact" data-plan="project">Start here <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT =============================================================== -->
+<section class="sec sec--alt" id="about" aria-labelledby="about-title" data-section="about">
+  <div class="wrap about">
+    <div class="about__badge">
+      <div class="badge-stage" data-badge-stage>
+        <svg class="badge-strap" data-badge-strap aria-hidden="true" focusable="false">
+          <path id="strap-path" class="badge-strap__band" d="M0 0"/>
+          <text class="badge-strap__text"><textPath href="#strap-path" data-strap-text>LANYARD · LANYARD · LANYARD · LANYARD · LANYARD · LANYARD · LANYARD · LANYARD ·</textPath></text>
+        </svg>
+        <div class="badge" data-badge role="img" aria-label="Founder ID badge. Hallam Pak, founder and lead engineer, Lanyard Systems. You can drag it.">
+          <div class="badge__slot" aria-hidden="true"></div>
+          <div class="badge__head" aria-hidden="true">
+            <svg class="mark" viewBox="0 0 64 64" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
+            <span>lanyard_</span><b>staff</b>
+          </div>
+          <div class="badge__photo" aria-hidden="true"><span>HP</span></div>
+          <p class="badge__name" aria-hidden="true">Hallam Pak</p>
+          <p class="badge__role" aria-hidden="true">Founder · lead engineer</p>
+          <dl class="badge__meta" aria-hidden="true">
+            <div><dt>id</dt><dd>LY-0001</dd></div>
+            <div><dt>access</dt><dd>all areas</dd></div>
+            <div><dt>issued</dt><dd>2026-11</dd></div>
+          </dl>
+          <svg class="badge__barcode" data-barcode="LY-0001" aria-hidden="true" focusable="false"></svg>
+          <span class="badge__chip" aria-hidden="true"></span>
+        </div>
+        <p class="badge-stage__hint" aria-hidden="true">drag the badge</p>
+      </div>
+    </div>
+
+    <div class="about__text">
+      <header class="sec-head sec-head--tight">
+        <p class="sec-head__path"><span>~/about</span><span aria-hidden="true">$ whoami</span></p>
+        <h2 class="h2" id="about-title" data-scramble>hi, i'm hallam<i>.</i></h2>
+      </header>
+      <div class="letter">
+        <p>For the last few years I've worked in IT inside a secure federal defence environment, supporting an organization of more than a thousand people. I've re-imaged air-gapped engineering workstations, administered smart-card identities, audited device fleets, specified high-end hardware and set new staff up from their first login.</p>
+        <p>I started Lanyard because most small companies get none of that care. Their IT is whoever happens to be least busy. You get the same written procedures, careful records and calm support that large organizations rely on, at a size that fits.</p>
+      </div>
+
+      <div class="neofetch" role="group" aria-label="Founder summary">
+        <pre class="neofetch__art" aria-hidden="true">   \\    //
+    \\  //
+     [##]
+   ########
+   ########
+   ########</pre>
+        <dl class="neofetch__info">
+          <div class="neofetch__user"><dt class="sr-only">user</dt><dd>hallam<span>@</span>lanyard</dd></div>
+          <div><dt>role</dt><dd>founder, lead engineer</dd></div>
+          <div><dt>base</dt><dd>Victoria, BC</dd></div>
+          <div><dt>background</dt><dd>IT analyst, secure federal defence environment</dd></div>
+          <div><dt>uptime</dt><dd>2.5+ years in secure IT</dd></div>
+          <div><dt>training</dt><dd>ITIL 4 Foundation, CompTIA Security+, Windows 11 deployment</dd></div>
+          <div><dt>education</dt><dd>University of Victoria</dd></div>
+          <div><dt>writes</dt><dd>JavaScript, C#, plain-language SOPs</dd></div>
+          <div class="neofetch__colors" aria-hidden="true"><dt class="sr-only">colours</dt><dd><i></i><i></i><i></i><i></i><i></i><i></i></dd></div>
+        </dl>
+      </div>
+
+      <div class="gitlog">
+        <p class="gitlog__cmd"><span class="prompt">$</span> git log --oneline --graph career</p>
+        <ol class="gitlog__list">
+          <li><span class="g">*</span><code>4e1d42c</code><span class="gitlog__msg"><b class="head">(HEAD → main)</b> <em>feat:</em> start Lanyard</span><time>2026</time></li>
+          <li><span class="g">*</span><code>c22604f</code><span class="gitlog__msg"><em>feat:</em> build an inventory tracker with edit locking to replace a shared spreadsheet</span><time>2026</time></li>
+          <li><span class="g">*</span><code>820522e</code><span class="gitlog__msg"><em>audit:</em> reconcile 125+ unaccounted computers against disposal records</span><time>2026</time></li>
+          <li><span class="g">*</span><code>444047d</code><span class="gitlog__msg"><em>ops:</em> coordinate the rollout of 66 new desktops</span><time>2026</time></li>
+          <li><span class="g">*</span><code>7a99ff6</code><span class="gitlog__msg"><em>docs:</em> write the Windows 11 in-place upgrade SOP for air-gapped machines</span><time>2025</time></li>
+          <li><span class="g">*</span><code>30ac32c</code><span class="gitlog__msg"><em>ops:</em> run the swap waitlist after non-Windows 11 laptops were cut off overnight</span><time>2025</time></li>
+          <li><span class="g">*</span><code>f00e09c</code><span class="gitlog__msg"><em>sec:</em> administer smart-card identities for 150+ staff and contractors</span><time>2024–26</time></li>
+          <li><span class="g">*</span><code>84ce1b6</code><span class="gitlog__msg"><em>people:</em> hire, onboard and supervise 8 co-op students</span><time>2024–25</time></li>
+          <li><span class="g">*</span><code>1f77270</code><span class="gitlog__msg"><em>ops:</em> replace industrial control workstations with no loss of control functions</span><time>2024</time></li>
+          <li><span class="g">*</span><code>427c81a</code><span class="gitlog__msg"><em>init:</em> join the IT team of a 1,000+ person organization</span><time>2024</time></li>
+        </ol>
+        <p class="gitlog__note">Each hash is the real SHA-1 of its line. Your browser checks them: <span data-hash-check>not checked yet</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ ================================================================= -->
+<section class="sec" id="faq" aria-labelledby="faq-title" data-section="faq">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-head__path"><span>~/faq</span><span aria-hidden="true">$ man lanyard</span></p>
+      <h2 class="h2" id="faq-title" data-scramble>questions, answered<i>.</i></h2>
+    </header>
+    <div class="man">
+      <p class="man__rule" aria-hidden="true"><span>LANYARD(1)</span><span>Lanyard Manual</span><span>LANYARD(1)</span></p>
+      <div class="man__sec">
+        <h3 class="man__h">NAME</h3>
+        <p>lanyard · managed IT for companies without an IT department</p>
+      </div>
+      <div class="man__sec">
+        <h3 class="man__h">SYNOPSIS</h3>
+        <p><b>lanyard</b> [<u>--fully-managed</u> | <u>--co-managed</u> | <u>--project</u>] [<u>--on-site</u>] <i>your-company</i></p>
+      </div>
+      <div class="man__sec">
+        <h3 class="man__h">QUESTIONS</h3>
+        <details class="man__q">
+          <summary><code>-s, --size</code><span>What size companies do you work with?</span></summary>
+          <div class="man__a"><p>Mostly teams of 5 to 100 people with no full-time IT staff. If you have one IT person who needs backup, we do that too.</p></div>
+        </details>
+        <details class="man__q">
+          <summary><code>-o, --on-site</code><span>Do you come on site?</span></summary>
+          <div class="man__a"><p>Yes, across Greater Victoria. Everything else we handle remotely, and most day-to-day problems get fixed faster that way.</p></div>
+        </details>
+        <details class="man__q">
+          <summary><code>-p, --platform</code><span>Windows or Mac?</span></summary>
+          <div class="man__a"><p>Both, plus iPhone, iPad and Android. Most offices are a mix, and that's fine.</p></div>
+        </details>
+        <details class="man__q">
+          <summary><code>-h, --hardware</code><span>Do we need new laptops?</span></summary>
+          <div class="man__a"><p>Probably not. We enrol what you already have, then plan replacements on a schedule so nothing dies at a bad moment.</p></div>
+        </details>
+        <details class="man__q">
+          <summary><code>-a, --access</code><span>Who can get into our systems?</span></summary>
+          <div class="man__a"><p>Your data stays in your own Microsoft 365 or Google Workspace. We use named admin accounts with multi-factor sign-in, and every change is logged. You can see or remove our access at any time.</p></div>
+        </details>
+        <details class="man__q">
+          <summary><code>-n, --now</code><span>Can you cut off someone's access right now?</span></summary>
+          <div class="man__a"><p>Yes. Once you tell us, we block sign-in and end every active session, then tidy up mail, files and devices afterwards.</p></div>
+        </details>
+        <details class="man__q">
+          <summary><code>-c, --cost</code><span>What does it cost?</span></summary>
+          <div class="man__a"><p>Managed plans are a monthly fee per person or per device. Projects get a fixed quote after a free intro call. You'll have a number before you commit to anything.</p></div>
+        </details>
+      </div>
+      <p class="man__rule" aria-hidden="true"><span>Lanyard 2026.11</span><span>November 2026</span><span>LANYARD(1)</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT ============================================================= -->
+<section class="sec sec--alt" id="contact" aria-labelledby="contact-title" data-section="contact">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-head__path"><span>~/contact</span><span aria-hidden="true">./open-ticket.sh</span></p>
+      <h2 class="h2" id="contact-title" data-scramble>open a ticket<i>.</i></h2>
+      <p class="sec-head__intro">Tell us about your team and what's getting in the way. We'll reply with a time for a free 30-minute intro call.</p>
+    </header>
+
+    <div class="contact">
+      <form class="ticket-form" data-ticket-form novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="t-name">Your name</label>
+            <input id="t-name" name="name" type="text" autocomplete="name" required placeholder="Jordan Lee">
+          </div>
+          <div class="field">
+            <label for="t-email">Work email</label>
+            <input id="t-email" name="email" type="email" autocomplete="email" required placeholder="jordan@company.ca">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="t-company">Company</label>
+            <input id="t-company" name="company" type="text" autocomplete="organization" placeholder="Northwind Dental">
+          </div>
+          <div class="field">
+            <label for="t-plan">Interested in</label>
+            <select id="t-plan" name="plan">
+              <option value="not-sure">Not sure yet</option>
+              <option value="fully-managed">Fully managed IT</option>
+              <option value="co-managed">Co-managed IT</option>
+              <option value="project">A project</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field__head"><label for="t-seats">Team size</label><output for="t-seats" data-seats-out>15 people</output></div>
+          <input id="t-seats" name="seats" type="range" min="1" max="200" step="1" value="15">
+        </div>
+        <fieldset class="field">
+          <legend>What you use</legend>
+          <div class="chips">
+            <input type="checkbox" id="t-p-win" name="platforms" value="windows"><label for="t-p-win">Windows</label>
+            <input type="checkbox" id="t-p-mac" name="platforms" value="macos"><label for="t-p-mac">macOS</label>
+            <input type="checkbox" id="t-p-ios" name="platforms" value="ios"><label for="t-p-ios">iPhone / iPad</label>
+            <input type="checkbox" id="t-p-and" name="platforms" value="android"><label for="t-p-and">Android</label>
+            <input type="checkbox" id="t-p-m365" name="platforms" value="m365"><label for="t-p-m365">Microsoft 365</label>
+            <input type="checkbox" id="t-p-gws" name="platforms" value="google-workspace"><label for="t-p-gws">Google Workspace</label>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>What you need</legend>
+          <div class="chips">
+            <input type="checkbox" id="t-n-end" name="needs" value="endpoint-management"><label for="t-n-end">Endpoint management</label>
+            <input type="checkbox" id="t-n-on" name="needs" value="onboarding"><label for="t-n-on">Onboarding</label>
+            <input type="checkbox" id="t-n-off" name="needs" value="offboarding"><label for="t-n-off">Offboarding</label>
+            <input type="checkbox" id="t-n-help" name="needs" value="help-desk"><label for="t-n-help">Help desk</label>
+            <input type="checkbox" id="t-n-proj" name="needs" value="project"><label for="t-n-proj">A project</label>
+            <input type="checkbox" id="t-n-sec" name="needs" value="security"><label for="t-n-sec">Security</label>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>How urgent is it?</legend>
+          <div class="chips chips--prio">
+            <input type="radio" id="t-u-4" name="priority" value="P4" checked><label for="t-u-4"><b>P4</b> just exploring</label>
+            <input type="radio" id="t-u-3" name="priority" value="P3"><label for="t-u-3"><b>P3</b> this quarter</label>
+            <input type="radio" id="t-u-2" name="priority" value="P2"><label for="t-u-2"><b>P2</b> this month</label>
+            <input type="radio" id="t-u-1" name="priority" value="P1"><label for="t-u-1"><b>P1</b> on fire</label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="t-msg">What's going on?</label>
+          <textarea id="t-msg" name="message" rows="5" placeholder="We're 18 people, mostly on laptops. Nobody owns IT, and we just had someone leave who still has access to everything."></textarea>
+        </div>
+        <p class="form-error" data-form-error role="alert" hidden></p>
+        <div class="form-actions">
+          <button class="btn btn--yellow" type="submit">Open ticket <span aria-hidden="true">→</span></button>
+          <p class="muted form-note">No newsletter, no tracking. Your details are only used to reply to you.</p>
+        </div>
+      </form>
+
+      <aside class="contact__aside" aria-label="Ticket preview and direct contact">
+        <figure class="code code--ticket">
+          <figcaption><span>ticket.json</span><span class="muted">live preview</span></figcaption>
+          <pre data-ticket-preview>{ }</pre>
+        </figure>
+        <div class="direct">
+          <p class="direct__label">or email directly</p>
+          <p class="direct__mail"><a href="mailto:hello@lanyard.example" data-email>hello@lanyard.example</a></p>
+          <button type="button" class="btn btn--small" data-copy="hello@lanyard.example">Copy address</button>
+          <p class="direct__meta">Victoria, BC · it's <span data-clock-long>--:--</span> here</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="ticket-done" data-ticket-done hidden tabindex="-1">
+      <p class="ticket-done__id" data-ticket-id>LY-0000</p>
+      <p class="ticket-done__msg" data-ticket-msg></p>
+      <pre class="ticket-done__copy" data-ticket-text></pre>
+      <div class="ticket-done__actions">
+        <button type="button" class="btn btn--small" data-copy-ticket>Copy ticket</button>
+        <button type="button" class="btn btn--small btn--text" data-ticket-new>Open another</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER ============================================================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__term" aria-hidden="true">
+      <p><span class="prompt">visitor@lanyard:~$</span> logout</p>
+      <p>Connection to lanyard closed. Session lasted <span data-uptime>00:00:00</span>.</p>
+    </div>
+    <p class="foot__word" aria-hidden="true">lanyard<span class="blink">_</span></p>
+    <div class="foot__grid">
+      <div>
+        <p class="foot__label">Lanyard Systems</p>
+        <p>Managed IT for companies without an IT department. Victoria, BC.</p>
+        <p><a href="mailto:hello@lanyard.example" data-email>hello@lanyard.example</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <p class="foot__label">Pages</p>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#lifecycle">Joiners and leavers</a></li>
+          <li><a href="#plans">Plans</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="foot__label">This page</p>
+        <ul class="foot__stats">
+          <li>0 cookies · 0 trackers</li>
+          <li data-weight>weight: measuring…</li>
+          <li>local time <span data-clock-long>--:--</span> PT</li>
+          <li>press <kbd>`</kbd> for a terminal</li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot__legal">© <span data-year>2026</span> Lanyard Systems. Product names belong to their owners.</p>
+  </div>
+</footer>
+
+<!-- TERMINAL ============================================================ -->
+<div class="term" data-term role="dialog" aria-modal="true" aria-label="Terminal" hidden>
+  <div class="term__bar">
+    <span>visitor@lanyard: ~ · type <b>help</b></span>
+    <button type="button" class="term__close" data-term-close aria-label="Close terminal">esc ×</button>
+  </div>
+  <div class="term__screen" data-term-screen>
+    <div class="term__out" data-term-out aria-live="polite"></div>
+    <form class="term__line" data-term-form autocomplete="off">
+      <label class="term__prompt" for="term-input">visitor@lanyard:<span data-term-cwd>~</span>$</label>
+      <input id="term-input" class="term__input" data-term-input type="text" spellcheck="false" autocapitalize="off" autocomplete="off" enterkeyhint="send">
+      <button type="submit" class="sr-only">Run command</button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" data-toast role="status" aria-live="polite" hidden></div>
+</body>
+</html>
