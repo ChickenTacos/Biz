@@ -1,4 +1,4 @@
-/* Pricing calculator: drag the team size, every plan's monthly total updates.
+/* Pricing: drag the team size and each plan shows its monthly total.
    Prices per person come from LY.config.prices when set, otherwise from the
    data-price attribute on each plan in index.html. */
 (function () {
@@ -6,7 +6,7 @@
   const LY = window.LY = window.LY || {};
 
   LY.plans = (function () {
-    let range, out, tiers;
+    let range, out, plans;
     const money = (n) => {
       try {
         return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(n);
@@ -14,43 +14,30 @@
         return '$' + Math.round(n).toLocaleString();
       }
     };
-
-    function priceOf(t) {
-      const p = LY.config && LY.config.prices && LY.config.prices[t.getAttribute('data-tier')];
-      return Number(p || t.getAttribute('data-price') || 0);
-    }
-
-    function animate(el, to) {
-      const from = Number(el.getAttribute('data-v') || to);
-      el.setAttribute('data-v', to);
-      if (LY.reduced() || from === to) { el.textContent = money(to); return; }
-      const t0 = performance.now();
-      const step = (now) => {
-        const p = Math.min(1, (now - t0) / 260);
-        el.textContent = money(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }
+    const priceOf = (p) => {
+      const cfg = LY.config && LY.config.prices && LY.config.prices[p.getAttribute('data-tier')];
+      return Number(cfg || p.getAttribute('data-price') || 0);
+    };
 
     function update() {
       const n = Number(range.value);
-      out.textContent = n + (n === 1 ? ' person' : ' people');
-      tiers.forEach((t) => {
-        const price = priceOf(t);
-        const per = t.querySelector('.tier__per');
-        if (per) per.textContent = money(price) + ' per person';
-        animate(t.querySelector('[data-total]'), n * price);
+      const people = n === 1 ? 'person' : 'people';
+      out.textContent = n + ' ' + people;
+      plans.forEach((p) => {
+        const price = priceOf(p);
+        const per = p.querySelector('[data-per]');
+        const total = p.querySelector('[data-total]');
+        const seats = p.querySelector('[data-seats-n]');
+        if (per) per.textContent = money(price);
+        if (total) total.textContent = money(price * n);
+        if (seats) seats.textContent = n + ' ' + people;
       });
-      const seats = document.querySelector('[data-ticket-form] [name="seats"]');
-      if (seats) seats.value = String(n);
-      if (LY.contact && LY.contact.refresh) LY.contact.refresh();
     }
 
     function init() {
       range = LY.$('[data-seats]');
       out = LY.$('[data-seats-out]');
-      tiers = LY.$$('[data-tier]');
+      plans = LY.$$('[data-tier]');
       if (!range || !out) return;
       range.addEventListener('input', update);
       update();

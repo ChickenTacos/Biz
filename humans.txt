@@ -1,12 +1,11 @@
-/* TEAM */
-  Founder: Hallam Pak
+/* COMPANY */
+  Name: Lanyard Systems
   Location: Victoria, BC, Canada
   Contact: hello@lanyard.example
 
 /* SITE */
   Last update: 2026/11/05
   Language: English (Canadian)
-  Standards: HTML, CSS, JavaScript, WebGL
-  Fonts: Martian Mono (Evil Martians), Atkinson Hyperlegible Next (Braille Institute), both SIL OFL 1.1
+  Standards: HTML, CSS, JavaScript
+  Fonts: Instrument Sans, Martian Mono (both SIL OFL 1.1)
   Built with: a text editor. No frameworks, no trackers, no cookies.
-  Easter egg: press ` on the home page

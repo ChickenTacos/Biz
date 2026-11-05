@@ -1,86 +1,69 @@
-/* Contact form as a support ticket, with a live JSON preview of the payload.
-   If LY.config.formEndpoint is set, the ticket is POSTed there as JSON.
-   Otherwise the visitor's email app opens with the ticket filled in, and the
+/* "Book a free IT check" form.
+   If LY.config.formEndpoint is set, the request is POSTed there as JSON.
+   Otherwise the visitor's email app opens with the message filled in, and the
    page says so plainly (it never claims a message was sent). */
 (function () {
   'use strict';
   const LY = window.LY = window.LY || {};
 
   LY.contact = (function () {
-    let form, preview, done, err, ticketId;
-
-    function newId() {
-      return 'LY-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
-    }
+    let form, err, done;
 
     function data() {
       const fd = new FormData(form);
+      const v = (k) => String(fd.get(k) || '').trim();
       return {
-        ticket: ticketId,
-        priority: fd.get('priority') || 'P4',
-        from: { name: (fd.get('name') || '').trim(), email: (fd.get('email') || '').trim() },
-        team_size: Number(fd.get('seats') || 0),
-        plan: fd.get('plan') || 'not-sure',
+        name: v('name'),
+        business: v('business'),
+        email: v('email'),
+        phone: v('phone'),
+        size: v('size'),
+        plan: v('plan'),
         needs: fd.getAll('needs'),
-        message: (fd.get('message') || '').trim(),
+        message: v('message'),
       };
     }
 
-    // JSON with syntax colouring; every value escaped
-    function pretty(v, ind = 0) {
-      const pad = '  '.repeat(ind);
-      if (Array.isArray(v)) {
-        if (!v.length) return '[]';
-        return '[' + v.map((x) => pretty(x, ind + 1)).join(', ') + ']';
-      }
-      if (v && typeof v === 'object') {
-        return '{\n' + Object.keys(v).map((k) => pad + '  <span class="k">"' + LY.esc(k) + '"</span>: ' + pretty(v[k], ind + 1)).join(',\n') + '\n' + pad + '}';
-      }
-      if (typeof v === 'number') return '<span class="n">' + v + '</span>';
-      return '<span class="s">' + LY.esc(JSON.stringify(String(v))) + '</span>';
-    }
-
-    function refresh() {
-      if (!form) return;
-      preview.innerHTML = pretty(data());
-    }
-
-    function plain(d) {
+    function text(d) {
       return [
-        'Ticket: ' + d.ticket + ' (' + d.priority + ')',
-        'From: ' + d.from.name + ' <' + d.from.email + '>',
-        'Team size: ' + d.team_size + ' · plan: ' + d.plan,
-        'Needs: ' + (d.needs.join(', ') || '-'),
+        'Free IT check request',
         '',
-        d.message || '(no message)',
-      ].join('\n');
+        'Name: ' + d.name,
+        'Business: ' + (d.business || '-'),
+        'Email: ' + d.email,
+        'Phone: ' + (d.phone || '-'),
+        'People: ' + d.size,
+        d.plan ? 'Interested in: ' + d.plan : '',
+        'Help with: ' + (d.needs.join(', ') || '-'),
+        '',
+        d.message,
+      ].filter((l, i, a) => l !== '' || a[i - 1] !== '').join('\n').trim();
     }
 
     function validate(d) {
-      const bad = [];
       const name = form.elements.name;
       const email = form.elements.email;
       name.removeAttribute('aria-invalid');
       email.removeAttribute('aria-invalid');
-      if (!d.from.name) { bad.push('your name'); name.setAttribute('aria-invalid', 'true'); }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.from.email)) { bad.push('a work email'); email.setAttribute('aria-invalid', 'true'); }
-      if (bad.length) {
-        err.textContent = 'Add ' + bad.join(' and ') + ' so we can reply.';
+      const missing = [];
+      if (!d.name) { missing.push('your name'); name.setAttribute('aria-invalid', 'true'); }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) { missing.push('an email address'); email.setAttribute('aria-invalid', 'true'); }
+      if (missing.length) {
+        err.textContent = 'Please add ' + missing.join(' and ') + ' so we can get back to you.';
         err.hidden = false;
-        (d.from.name ? email : name).focus();
+        (d.name ? email : name).focus();
         return false;
       }
       err.hidden = true;
       return true;
     }
 
-    function showDone(d, msg) {
-      done.querySelector('[data-ticket-id]').textContent = d.ticket;
-      done.querySelector('[data-ticket-msg]').innerHTML = msg;
-      done.querySelector('[data-ticket-text]').textContent = plain(d);
+    function finish(d, message) {
+      form.hidden = true;
+      done.querySelector('[data-done-name]').textContent = d.name.split(' ')[0] || 'there';
+      done.querySelector('[data-done-msg]').innerHTML = message;
       done.hidden = false;
       done.focus({ preventScroll: true });
-      done.scrollIntoView({ behavior: LY.reduced() ? 'auto' : 'smooth', block: 'center' });
     }
 
     async function submit(e) {
@@ -97,63 +80,42 @@
             headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
             body: JSON.stringify(d),
           });
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          showDone(d, 'Ticket received. We\'ll reply to <b>' + LY.esc(d.from.email) + '</b>.');
-          form.reset();
-          ticketId = newId();
-          refresh();
+          if (!res.ok) throw new Error('status ' + res.status);
+          finish(d, 'We got your request and will be in touch soon to book your free IT check.');
         } catch (ex) {
-          err.innerHTML = 'The ticket didn\'t go through (' + LY.esc(ex.message) + '). Email <b>' + LY.esc(cfg.email) + '</b> instead.';
+          err.innerHTML = 'Sorry, that didn\'t send. Please email us at <a href="mailto:' + LY.esc(cfg.email) + '">' + LY.esc(cfg.email) + '</a> instead.';
           err.hidden = false;
         } finally {
           btn.disabled = false;
         }
         return;
       }
-      const subject = encodeURIComponent('[' + d.ticket + '] ' + d.from.name + ' · ' + d.priority);
-      const body = encodeURIComponent(plain(d));
-      showDone(d, 'Your email app should open with this ticket filled in. If it didn\'t, copy it and send it to <b>' + LY.esc(cfg.email) + '</b>.');
-      try { window.location.href = 'mailto:' + cfg.email + '?subject=' + subject + '&body=' + body; } catch (ex) { /* the panel already explains what to do */ }
+      const subject = encodeURIComponent('Free IT check: ' + (d.business || d.name));
+      const body = encodeURIComponent(text(d));
+      finish(d, 'Your email app should open with your message ready to send. If it doesn\'t, email us at <a href="mailto:' + LY.esc(cfg.email) + '">' + LY.esc(cfg.email) + '</a>.');
+      try { window.location.href = 'mailto:' + cfg.email + '?subject=' + subject + '&body=' + body; } catch (ex) { /* the message above explains what to do */ }
     }
 
     function init() {
-      form = LY.$('[data-ticket-form]');
+      form = LY.$('[data-form]');
       if (!form) return;
-      preview = LY.$('[data-ticket-preview]');
-      done = LY.$('[data-ticket-done]');
       err = LY.$('[data-form-error]');
-      ticketId = newId();
-      form.addEventListener('input', refresh);
-      form.addEventListener('change', refresh);
+      done = LY.$('[data-done]');
       form.addEventListener('submit', submit);
-      refresh();
-
-      done.querySelector('[data-copy-ticket]').addEventListener('click', async () => {
-        const ok = await LY.copy(done.querySelector('[data-ticket-text]').textContent);
-        LY.toast(ok ? 'Ticket copied' : 'Copy blocked here. Select the text and copy it.');
-      });
-      done.querySelector('[data-ticket-new]').addEventListener('click', () => {
-        done.hidden = true;
+      done.querySelector('[data-done-again]').addEventListener('click', () => {
         form.reset();
-        ticketId = newId();
-        refresh();
+        done.hidden = true;
+        form.hidden = false;
         form.elements.name.focus();
       });
-
-      // "Choose" on a plan carries the plan into the ticket
+      // "Choose this plan" carries the plan into the form
       LY.$$('[data-plan]').forEach((a) => a.addEventListener('click', () => {
         form.elements.plan.value = a.getAttribute('data-plan');
-        refresh();
-        setTimeout(() => form.elements.name.focus({ preventScroll: true }), 650);
+        const msg = form.elements.message;
+        if (!msg.value) msg.placeholder = 'Interested in ' + a.getAttribute('data-plan') + '.';
       }));
     }
 
-    function prefill(fields) {
-      if (!form) return;
-      Object.keys(fields || {}).forEach((k) => { if (form.elements[k]) form.elements[k].value = fields[k]; });
-      refresh();
-    }
-
-    return { init, prefill, refresh };
+    return { init };
   })();
 })();

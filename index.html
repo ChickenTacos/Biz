@@ -1,53 +1,33 @@
 <!doctype html>
-<!--
-     __
-    \  /     lanyard_  managed IT for companies without an IT department
-     ||      Victoria, BC
-    [##]
-    ####     Reading the source? Good. That's the kind of curiosity we hire for.
-             Press ` (backtick) anywhere on the page to open a terminal. Type "help".
-             No frameworks, no trackers, no cookies. Hand-written HTML, CSS and JS.
--->
 <html lang="en-CA">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lanyard Systems · Managed IT in Victoria, BC</title>
+<title>Lanyard · Managed IT for small businesses in Victoria, BC</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="The IT department for companies that don't have one. Endpoints, onboarding, offboarding, security, email, backups, networks and phones. Victoria, BC.">
-<meta name="author" content="Lanyard Systems">
-<meta name="color-scheme" content="dark light">
+<meta name="description" content="Your IT department, without hiring one. We set up, protect and look after your computers, email, Wi-Fi and phones for one monthly price. Victoria, BC.">
 <meta name="theme-color" content="#1f2bff">
 <link rel="canonical" href="https://lanyard.example/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Lanyard Systems">
-<meta property="og:title" content="Lanyard Systems · First login to last logoff.">
-<meta property="og:description" content="The IT department for companies that don't have one. Victoria, BC.">
+<meta property="og:site_name" content="Lanyard">
+<meta property="og:title" content="Lanyard · Your IT department, without hiring one.">
+<meta property="og:description" content="We set up, protect and look after your computers, email, Wi-Fi and phones for one monthly price. Victoria, BC.">
 <meta property="og:url" content="https://lanyard.example/">
 <meta property="og:image" content="https://lanyard.example/assets/img/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Lanyard logo on a blue field with the line: first login to last logoff.">
+<meta property="og:image:alt" content="Lanyard: your IT department, without hiring one.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="preload" href="assets/fonts/martian-mono.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/atkinson-hyperlegible-next.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/main.css">
-<script src="assets/js/early.js"></script>
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/util.js" defer></script>
-<script src="assets/js/device.js" defer></script>
-<script src="assets/js/boot.js" defer></script>
-<script src="assets/js/ascii.js" defer></script>
-<script src="assets/js/scenes.js" defer></script>
-<script src="assets/js/day.js" defer></script>
 <script src="assets/js/plans.js" defer></script>
-<script src="assets/js/badge.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
-<script src="assets/js/terminal.js" defer></script>
 <script src="assets/js/ui.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 <script type="application/ld+json">
@@ -55,726 +35,406 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Lanyard Systems",
-  "description": "Managed IT for companies without an IT department: endpoint management, onboarding, offboarding, security, email protection, backups, networks and business phones.",
+  "description": "Managed IT for small businesses: computers, email protection, Wi-Fi and network security, Microsoft 365, backups, business phones, help desk and hardware.",
   "url": "https://lanyard.example/",
   "email": "hello@lanyard.example",
   "logo": "https://lanyard.example/assets/brand/icon.svg",
   "image": "https://lanyard.example/assets/img/og-image.png",
   "address": { "@type": "PostalAddress", "addressLocality": "Victoria", "addressRegion": "BC", "addressCountry": "CA" },
   "areaServed": [{ "@type": "City", "name": "Victoria" }, { "@type": "Country", "name": "Canada" }],
-  "founder": { "@type": "Person", "name": "Hallam Pak", "jobTitle": "Founder" },
-  "knowsAbout": ["Endpoint management", "Microsoft Intune", "Windows Autopilot", "Employee onboarding", "Employee offboarding", "Email security", "Backup and disaster recovery", "Network security", "VoIP", "Microsoft 365"]
+  "priceRange": "$$"
 }
 </script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- Boot screen. Hidden unless early.js decides to play it (first visit per session). -->
-<div class="boot" id="boot" aria-hidden="true">
-  <div class="boot__inner">
-    <div class="boot__top">
-      <pre class="boot__log" data-boot-log></pre>
-      <svg class="mark boot__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
-    </div>
-    <div class="boot__bottom">
-      <span>Press <kbd>Esc</kbd> to skip · read locally, nothing leaves your browser</span>
-      <span class="boot__pct" data-boot-pct>000</span>
-    </div>
+<header class="head" data-head>
+  <div class="head__in wrap">
+    <a class="brand" href="#top" aria-label="Lanyard, back to top">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
+      <span class="brand__word">lanyard<span class="brand__cur">_</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--primary btn--sm head__cta" href="#contact">Free IT check</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn>Menu</button>
   </div>
-</div>
-
-<!-- tmux-style status bar -->
-<header class="tmux" data-tmux>
-  <a class="tmux__brand" href="#home" aria-label="Lanyard Systems, back to top">
-    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
-    <span class="tmux__word">lanyard<span class="blink">_</span></span>
-  </a>
-  <nav class="tmux__wins" aria-label="Sections">
-    <a href="#home" data-win="home"><b>0</b>home</a>
-    <a href="#day" data-win="day"><b>1</b>the day</a>
-    <a href="#plans" data-win="plans"><b>2</b>plans</a>
-    <a href="#about" data-win="about"><b>3</b>about</a>
-    <a href="#contact" data-win="contact"><b>4</b>contact</a>
+  <nav class="menu" id="menu" aria-label="Mobile" data-menu hidden>
+    <a href="#services">Services</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn btn--primary" href="#contact">Get a free IT check</a>
   </nav>
-  <div class="tmux__right">
-    <span class="tmux__ruler" data-ruler aria-hidden="true">Top</span>
-    <span class="tmux__clock" data-clock title="Local time in Victoria, BC">--:-- PT</span>
-    <button class="tmux__btn" type="button" data-theme-toggle aria-label="Switch to light theme"><span aria-hidden="true">◐</span></button>
-    <button class="tmux__btn" type="button" data-term-open aria-label="Open terminal" aria-keyshortcuts="`"><span aria-hidden="true">&gt;_</span></button>
-    <button class="tmux__btn tmux__menu" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu">menu</button>
-  </div>
 </header>
-
-<div class="menu" id="menu" data-menu hidden>
-  <p class="menu__cmd">$ ls ~</p>
-  <nav aria-label="Site menu">
-    <a href="#home">home</a>
-    <a href="#day">the-day/</a>
-    <a href="#plans">plans/</a>
-    <a href="#about">about/</a>
-    <a href="#faq">faq.man</a>
-    <a href="#contact">contact.sh</a>
-  </nav>
-</div>
 
 <main id="main">
 
-<!-- HERO ================================================================ -->
-<section class="hero" id="home" aria-labelledby="hero-title" data-section="home">
-  <div class="hero__stage" data-ascii-stage>
-    <canvas class="hero__canvas" data-ascii aria-hidden="true"></canvas>
-<pre class="hero__fallback" aria-hidden="true">
-     .-------------------------.
-     |  .-------------------.  |
-     |  |       ( o )       |  |
-     |  |   [ ********_ ]   |  |
-     |  |                   |  |
-     |  '-------------------'  |
-     '-------------------------'
-   .-----------------------------.
-  /  [][][][][][][][][][][][][][] \
- /  [][][][][][][][][][][][][][][] \
-'-----------------------------------'</pre>
-  </div>
-  <div class="hero__inner wrap">
-    <p class="eyebrow eyebrow--on-blue">( managed it · victoria, bc )</p>
-    <h1 class="hero__title" id="hero-title"><span>first login</span> <span>to last</span> <span>logoff<i>.</i></span></h1>
-    <div class="hero__foot">
-      <p class="hero__lead">The IT department for companies that don't have one.</p>
+<!-- HERO -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero__in wrap">
+    <div class="hero__copy">
+      <p class="eyebrow eyebrow--light">Managed IT · Victoria, BC</p>
+      <h1 class="hero__title" id="hero-title">Your IT department,<br> without hiring one.</h1>
+      <p class="hero__lead">We set up, protect and look after your computers, email, Wi-Fi and phones. One monthly price. One team to call.</p>
       <div class="hero__ctas">
-        <a class="btn btn--yellow" href="#contact">Open a ticket <span aria-hidden="true">→</span></a>
-        <a class="btn btn--ghost-light" href="#day">Run the day <span aria-hidden="true">↓</span></a>
+        <a class="btn btn--primary" href="#contact">Get a free IT check</a>
+        <a class="btn btn--ghost" href="#pricing">See pricing</a>
       </div>
-      <p class="hero__status"><span class="dot dot--ok" aria-hidden="true"></span>accepting new clients · <span data-clock-long>--:--</span> in Victoria</p>
+      <ul class="hero__trust">
+        <li>Local to Victoria</li>
+        <li>On-site and remote</li>
+        <li>Plans from $30 per person</li>
+      </ul>
     </div>
-    <div class="hero__caption" aria-hidden="true">
-      <p><span class="hero__tag" data-ascii-index>[ endpoint 1/4 ]</span> <span data-ascii-name>laptop · windows 11</span></p>
-      <p data-ascii-state>enrolled ✓ encrypted ✓ patched ✓</p>
-      <p class="hero__hint">hover to inspect · click to switch</p>
+
+    <div class="hero__visual">
+      <figure class="board" aria-label="Example of a normal day for a business we look after: computers protected, backup finished, scam emails blocked, Wi-Fi running and a new hire's laptop ready.">
+        <div class="board__head">
+          <span class="board__live" aria-hidden="true"></span>
+          <b>Your business today</b>
+          <span class="board__time" data-board-time>9:41 am</span>
+        </div>
+        <ul class="board__list">
+          <li class="board__item"><span class="board__ic" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10.5l3.2 3.2L15 7"/></svg></span><span><b>24 computers</b> protected and up to date</span></li>
+          <li class="board__item"><span class="board__ic" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10.5l3.2 3.2L15 7"/></svg></span><span>Nightly backup finished at <b>2:00 am</b></span></li>
+          <li class="board__item"><span class="board__ic" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10.5l3.2 3.2L15 7"/></svg></span><span><b data-blocked>3 scam emails</b> stopped before anyone saw them</span></li>
+          <li class="board__item"><span class="board__ic" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10.5l3.2 3.2L15 7"/></svg></span><span>Wi-Fi and internet <b>running smoothly</b></span></li>
+          <li class="board__item"><span class="board__ic" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10.5l3.2 3.2L15 7"/></svg></span><span>New hire's laptop <b>ready for Monday</b></span></li>
+        </ul>
+        <div class="board__foot"><b>All good.</b> Nothing for you to do.</div>
+      </figure>
+      <p class="board__toast" data-board-toast aria-hidden="true" hidden></p>
     </div>
   </div>
 </section>
 
-<!-- LOG TICKER -->
-<div class="ticker" role="marquee" aria-label="Example activity log">
-  <span class="ticker__label">tail -f demo.log</span>
-  <div class="ticker__track" data-ticker>
-    <ul class="ticker__list">
-      <li><time>08:58</time> onboard <b>j.lee</b> ready <em>ok</em></li>
-      <li><time>10:14</time> patch ring-0 <b>4/4</b> <em>ok</em></li>
-      <li><time>11:12</time> phish <b>micros0ft-billing</b> quarantined <em>ok</em></li>
-      <li><time>12:31</time> edr <b>LY-LT-019</b> isolated · cleaned <em>ok</em></li>
-      <li><time>13:17</time> ticket <b>#4821</b> fixed in 12m <em>ok</em></li>
-      <li><time>14:02</time> restore <b>budget-2026.xlsx</b> 2m 11s <em>ok</em></li>
-      <li><time>15:30</time> firewall <b>214</b> probes dropped <em>ok</em></li>
-      <li><time>17:00</time> offboard <b>s.ortiz</b> access closed <em>ok</em></li>
+<!-- WHAT IS MANAGED IT -->
+<section class="section" id="what" aria-labelledby="what-title">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">What is managed IT?</p>
+      <h2 id="what-title">Think of us as your IT department.</h2>
+      <p class="section__lead">For one monthly price, we take care of the technology your business runs on. You get on with your work.</p>
+    </header>
+    <div class="pillars">
+      <article class="pillar">
+        <span class="pillar__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M5 10h22M5 16h22M5 22h22"/><circle class="ic__knob" cx="11" cy="10" r="2.6"/><circle class="ic__knob" cx="21" cy="16" r="2.6"/><circle class="ic__knob" cx="14" cy="22" r="2.6"/></svg></span>
+        <h3>We set it up</h3>
+        <p>Computers, email, Wi-Fi and phones, set up properly from day one.</p>
+      </article>
+      <article class="pillar">
+        <span class="pillar__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M16 4l10 4v7c0 6.5-4.3 11-10 13-5.7-2-10-6.5-10-13V8z"/><path d="M11.5 16.2l3 3 6-6.4"/></svg></span>
+        <h3>We keep it safe</h3>
+        <p>Protection from scams, viruses and data loss, working quietly in the background.</p>
+      </article>
+      <article class="pillar">
+        <span class="pillar__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M6 19v-3a10 10 0 0 1 20 0v3"/><rect x="4" y="18" width="5" height="7" rx="1.8"/><rect x="23" y="18" width="5" height="7" rx="1.8"/><path d="M25.5 25c0 2.4-2.2 3.5-5 3.5H18"/></svg></span>
+        <h3>We're here when you need us</h3>
+        <p>Something not working? Call or email, and a real person helps you fix it.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section--alt" id="services" aria-labelledby="services-title">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">Services</p>
+      <h2 id="services-title">Everything we look after.</h2>
+      <p class="section__lead">Choose what you need, or hand us all of it.</p>
+    </header>
+    <ul class="services">
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><rect x="6" y="7" width="20" height="13" rx="1.5"/><path d="M3.5 23.5h25l-1.5 2.5h-22z"/></svg></span>
+        <h3>Computers and laptops</h3>
+        <p>Protected, updated and running smoothly, every day.</p>
+      </li>
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><rect x="3.5" y="8" width="19" height="14" rx="2"/><path d="M4 9.5l8.5 6.5 8.5-6.5"/><path d="M25 16l4 1.6v3.2c0 2.8-1.7 4.6-4 5.4-2.3-.8-4-2.6-4-5.4v-3.2z"/></svg></span>
+        <h3>Email and scam protection</h3>
+        <p>Phishing emails and viruses stopped before they reach your team.</p>
+      </li>
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M4.5 13a16.5 16.5 0 0 1 23 0M8.8 17.4a10.5 10.5 0 0 1 14.4 0M13 21.6a4.6 4.6 0 0 1 6 0"/><circle class="ic__dot" cx="16" cy="25.5" r="1.5"/></svg></span>
+        <h3>Wi-Fi and network security</h3>
+        <p>Fast, reliable internet with protection from outside attacks.</p>
+      </li>
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M9 24h14.5a5.5 5.5 0 0 0 .7-10.95A8 8 0 0 0 8.9 11.6 6.2 6.2 0 0 0 9 24z"/></svg></span>
+        <h3>Microsoft 365</h3>
+        <p>Email, files and Teams set up properly and looked after for you.</p>
+      </li>
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M5.5 16a10.5 10.5 0 1 0 3.1-7.4"/><path d="M8.2 4.6v4.4h4.4"/><path d="M16 10.5V16l3.6 2.2"/></svg></span>
+        <h3>Backups and recovery</h3>
+        <p>If disaster strikes, you're back up and running in hours, not weeks.</p>
+      </li>
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M10.2 5H7.5A2.5 2.5 0 0 0 5 7.7C5.6 18 14 26.4 24.3 27a2.5 2.5 0 0 0 2.7-2.5v-2.7l-5-2.2-2.6 2.6a14 14 0 0 1-7.6-7.6l2.6-2.6z"/></svg></span>
+        <h3>Business phones</h3>
+        <p>A modern phone system with unlimited calling across North America.</p>
+      </li>
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M12 8 9.5 3M20 8l2.5-5"/><rect x="8" y="8" width="16" height="20" rx="2.5"/><circle cx="16" cy="16" r="3"/><path d="M11 24c.8-2.4 2.8-3.7 5-3.7s4.2 1.3 5 3.7"/></svg></span>
+        <h3>New staff and leavers</h3>
+        <p>New hires ready on day one. Access closed on their last day.</p>
+      </li>
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M6 7h20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H14l-6 5v-5H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/><circle class="ic__dot" cx="11" cy="14.5" r="1.4"/><circle class="ic__dot" cx="16" cy="14.5" r="1.4"/><circle class="ic__dot" cx="21" cy="14.5" r="1.4"/></svg></span>
+        <h3>Help desk</h3>
+        <p>A friendly team to call when something isn't working.</p>
+      </li>
+      <li class="service">
+        <span class="service__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><rect x="4" y="5.5" width="24" height="15.5" rx="1.8"/><path d="M13 21l-1 4.5h8l-1-4.5M10 25.5h12"/></svg></span>
+        <h3>Hardware and leasing</h3>
+        <p>New equipment with little upfront cost, plus repairs and supplies.</p>
+      </li>
+    </ul>
+    <p class="works-with">Works with Microsoft 365, Windows, Mac, iPhone and Android.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">How it works</p>
+      <h2 id="how-title">Getting started is easy.</h2>
+    </header>
+    <ol class="steps">
+      <li class="step">
+        <span class="step__n">01</span>
+        <h3>Free IT check</h3>
+        <p>We look at your computers, accounts and network. No cost, no obligation.</p>
+      </li>
+      <li class="step">
+        <span class="step__n">02</span>
+        <h3>A clear plan</h3>
+        <p>You get a simple plan and a fixed monthly price. No surprises.</p>
+      </li>
+      <li class="step">
+        <span class="step__n">03</span>
+        <h3>We set it up</h3>
+        <p>We move everything over with as little disruption as possible.</p>
+      </li>
+      <li class="step">
+        <span class="step__n">04</span>
+        <h3>We look after it</h3>
+        <p>Updates, protection, backups and help, every day.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section section--alt" id="pricing" aria-labelledby="pricing-title">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">Pricing</p>
+      <h2 id="pricing-title">Simple monthly plans.</h2>
+      <p class="section__lead">Priced per person. No surprise repair bills.</p>
+    </header>
+
+    <div class="calc">
+      <label class="calc__label" for="seats">How many people work at your business?</label>
+      <output class="calc__out" for="seats" data-seats-out>15 people</output>
+      <input class="calc__range" id="seats" type="range" min="1" max="100" step="1" value="15" data-seats>
+    </div>
+
+    <div class="plans">
+      <article class="plan" data-tier="security" data-price="30">
+        <h3 class="plan__name">Security Essentials</h3>
+        <p class="plan__desc">Stay protected.</p>
+        <p class="plan__price"><b data-per>$30</b><span>per person / month</span></p>
+        <p class="plan__total">About <b data-total>$450</b> a month for <span data-seats-n>15 people</span></p>
+        <a class="btn btn--outline plan__btn" href="#contact" data-plan="Security Essentials">Choose this plan</a>
+        <ul class="plan__list">
+          <li>Protection on every computer</li>
+          <li>Email scam and virus filtering</li>
+          <li>Monitoring for hidden threats</li>
+          <li>We clean up any problems we find</li>
+        </ul>
+      </article>
+      <article class="plan plan--main" data-tier="managed" data-price="100">
+        <p class="plan__badge">Most popular</p>
+        <h3 class="plan__name">Managed Services</h3>
+        <p class="plan__desc">Your complete IT department.</p>
+        <p class="plan__price"><b data-per>$100</b><span>per person / month</span></p>
+        <p class="plan__total">About <b data-total>$1,500</b> a month for <span data-seats-n>15 people</span></p>
+        <a class="btn btn--primary plan__btn" href="#contact" data-plan="Managed Services">Choose this plan</a>
+        <ul class="plan__list">
+          <li class="plan__inc">Everything in Security Essentials</li>
+          <li>Help desk for your whole team</li>
+          <li>Computers kept up to date</li>
+          <li>New staff and leavers handled</li>
+          <li>IT planning for the year ahead</li>
+          <li>Discounts on new hardware</li>
+        </ul>
+      </article>
+      <article class="plan" data-tier="office" data-price="225">
+        <h3 class="plan__name">Office in a Box</h3>
+        <p class="plan__desc">Equipment included.</p>
+        <p class="plan__price"><b data-per>$225</b><span>per person / month</span></p>
+        <p class="plan__total">About <b data-total>$3,375</b> a month for <span data-seats-n>15 people</span></p>
+        <a class="btn btn--outline plan__btn" href="#contact" data-plan="Office in a Box">Choose this plan</a>
+        <ul class="plan__list">
+          <li class="plan__inc">Everything in Managed Services</li>
+          <li>Business computers included</li>
+          <li>Router, switches and Wi-Fi included</li>
+          <li>Microsoft 365 Business Premium</li>
+          <li>Office phones with unlimited North America calling</li>
+        </ul>
+      </article>
+    </div>
+    <p class="plans__note">Guide prices in Canadian dollars. Every business is different, so we'll confirm yours after a free IT check. One-off projects, like office moves or computer upgrades, get a fixed quote.</p>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why" aria-labelledby="why-title">
+  <div class="wrap why">
+    <header class="section__head section__head--left">
+      <p class="eyebrow">Why Lanyard</p>
+      <h2 id="why-title">IT help that speaks your language.</h2>
+      <p class="section__lead">We're a Victoria IT company for small and growing businesses. Our job is to keep your technology working, so you don't have to think about it.</p>
+    </header>
+    <ul class="reasons">
+      <li class="reason">
+        <span class="reason__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M6 7h20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H14l-6 5v-5H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/></svg></span>
+        <div><h3>Plain English</h3><p>No jargon. We explain what we're doing and why.</p></div>
+      </li>
+      <li class="reason">
+        <span class="reason__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M16 28s-8-7.6-8-14a8 8 0 0 1 16 0c0 6.4-8 14-8 14z"/><circle cx="16" cy="14" r="3"/></svg></span>
+        <div><h3>Local and quick</h3><p>Based in Victoria, with on-site visits when you need them.</p></div>
+      </li>
+      <li class="reason">
+        <span class="reason__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><path d="M5 6.5h11.5L27 17 17 27 5 17z"/><circle cx="10.5" cy="11.5" r="1.8"/></svg></span>
+        <div><h3>Predictable price</h3><p>One monthly fee per person, and better prices on equipment.</p></div>
+      </li>
+      <li class="reason">
+        <span class="reason__ic" aria-hidden="true"><svg class="ic" viewBox="0 0 32 32"><rect x="7" y="14" width="18" height="13" rx="2.5"/><path d="M11 14v-3.5a5 5 0 0 1 10 0V14"/></svg></span>
+        <div><h3>Your data stays yours</h3><p>You own your accounts and files. Leave any time, and we'll hand everything over.</p></div>
+      </li>
     </ul>
   </div>
-</div>
-
-<!-- THE DAY ============================================================= -->
-<section class="day" id="day" aria-labelledby="day-title" data-section="day">
-  <h2 class="sr-only" id="day-title">A workday at your company, run by Lanyard</h2>
-  <div class="day__wrap wrap">
-
-    <aside class="sky" data-sky aria-label="Time of day">
-      <div class="sky__panel" data-sky-panel>
-        <p class="sky__label" aria-hidden="true"><span>~/the-day</span><span>your company · victoria</span></p>
-        <p class="sky__clock" data-sky-clock aria-hidden="true">07:30</p>
-        <svg class="sky__arc" viewBox="0 0 320 166" aria-hidden="true" focusable="false">
-          <path class="sky__path" d="M24 152A136 136 0 0 1 296 152"/>
-          <path class="sky__horizon" d="M0 152H320"/>
-          <circle class="sky__glow" data-sky-glow cx="24" cy="152" r="20"/>
-          <circle class="sky__sun" data-sky-sun cx="24" cy="152" r="9"/>
-        </svg>
-        <nav class="sky__list" aria-label="The day, hour by hour">
-          <a href="#s-office" data-sky-item="office"><time>08:00</time>office in a box</a>
-          <a href="#s-onboard" data-sky-item="onboard"><time>09:00</time>first login</a>
-          <a href="#s-patch" data-sky-item="patch"><time>10:00</time>patches</a>
-          <a href="#s-phish" data-sky-item="phish"><time>11:12</time>phishing</a>
-          <a href="#s-hunt" data-sky-item="hunt"><time>12:30</time>threat hunt</a>
-          <a href="#s-desk" data-sky-item="desk"><time>13:05</time>help desk</a>
-          <a href="#s-backup" data-sky-item="backup"><time>14:00</time>backups</a>
-          <a href="#s-net" data-sky-item="net"><time>15:30</time>network</a>
-          <a href="#s-phone" data-sky-item="phone"><time>16:10</time>phones</a>
-          <a href="#s-offboard" data-sky-item="offboard"><time>17:00</time>last logoff</a>
-        </nav>
-      </div>
-    </aside>
-
-    <div class="day__scenes">
-
-      <!-- 08:00 office in a box -->
-      <article class="scene" id="s-office" data-scene="office" data-time="08:00">
-        <header class="scene__head">
-          <time class="scene__time">08:00</time>
-          <h3 class="scene__title">office in a box<i>.</i></h3>
-          <p class="scene__tags"><span>leased PCs</span><span>firewall</span><span>switches</span><span>Wi-Fi</span><span>phones</span><span>Microsoft 365</span></p>
-        </header>
-        <figure class="viz viz--office" aria-label="A box opens. A laptop, firewall, network switch, Wi-Fi access point and desk phone come out, already configured, and each one goes online.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>unbox.log</b><em class="viz__st" data-st>online 5/5</em></div>
-          <svg class="viz__svg" viewBox="0 0 600 340" aria-hidden="true" focusable="false">
-            <path class="o-floor" d="M30 318H570"/>
-            <g transform="translate(96 118)"><g class="o-pop o-pop--1">
-              <rect class="ln" x="-28" y="-26" width="56" height="36" rx="3"/>
-              <rect class="o-scr" x="-23" y="-21" width="46" height="26" rx="1"/>
-              <path class="ln" d="M-36 14h72l-6 8h-60z"/>
-              <circle class="o-dot" cy="42" r="4"/><text class="o-lbl" y="66">laptop</text>
-            </g></g>
-            <g transform="translate(198 104)"><g class="o-pop o-pop--2">
-              <rect class="ln" x="-26" y="-22" width="52" height="40" rx="2"/>
-              <path class="ln ln--thin" d="M-26 -9h52M-26 4h52M-12 -22v13M10 -22v13M-2 -9v13M-18 4v14M14 4v14"/>
-              <circle class="o-dot" cy="42" r="4"/><text class="o-lbl" y="66">firewall</text>
-            </g></g>
-            <g transform="translate(300 96)"><g class="o-pop o-pop--3">
-              <rect class="ln" x="-34" y="-12" width="68" height="24" rx="3"/>
-              <path class="o-ports" d="M-26 -4h6v8h-6zM-16 -4h6v8h-6zM-6 -4h6v8h-6zM4 -4h6v8h-6zM14 -4h6v8h-6z"/>
-              <circle class="o-led" cx="27" r="2.6"/>
-              <circle class="o-dot" cy="42" r="4"/><text class="o-lbl" y="66">switch</text>
-            </g></g>
-            <g transform="translate(402 104)"><g class="o-pop o-pop--4">
-              <ellipse class="ln" cy="10" rx="21" ry="8"/>
-              <path class="o-wave" d="M-19 -10a27 27 0 0 1 38 0M-12 -3a17 17 0 0 1 24 0"/>
-              <circle class="o-dot" cy="42" r="4"/><text class="o-lbl" y="66">wi-fi</text>
-            </g></g>
-            <g transform="translate(504 118)"><g class="o-pop o-pop--5">
-              <rect class="ln" x="-26" y="-6" width="52" height="28" rx="4"/>
-              <path class="ln" d="M-28 -10c0-10 56-10 56 0v5h-13v-4h-30v4h-13z"/>
-              <path class="o-keys" d="M-14 4h5v3h-5zM-4 4h5v3h-5zM6 4h5v3h-5zM-14 11h5v3h-5zM-4 11h5v3h-5zM6 11h5v3h-5z"/>
-              <circle class="o-dot" cy="42" r="4"/><text class="o-lbl" y="66">phone</text>
-            </g></g>
-            <g transform="translate(300 268)">
-              <rect class="o-front" x="-72" y="-18" width="144" height="62" rx="2"/>
-              <rect class="o-tape" x="-9" y="-18" width="18" height="24"/>
-              <text class="o-stamp" y="30">lanyard_</text>
-              <path class="o-flap o-flap--l" d="M-72 -18h72l-4-12h-62z"/>
-              <path class="o-flap o-flap--r" d="M72 -18h-72l4-12h62z"/>
-            </g>
-          </svg>
-        </figure>
-      </article>
-
-      <!-- 09:00 first login -->
-      <article class="scene" id="s-onboard" data-scene="onboard" data-time="09:00">
-        <header class="scene__head">
-          <time class="scene__time">09:00</time>
-          <h3 class="scene__title">first login<i>.</i></h3>
-          <p class="scene__tags"><span>Entra ID</span><span>Microsoft 365</span><span>Intune</span><span>Autopilot</span><span>MFA</span></p>
-        </header>
-        <figure class="viz viz--graph viz--join" aria-label="A new hire's badge is issued. Mail, Teams, files, CRM, Wi-Fi and a laptop connect to it one by one, and the badge reads ready at 08:58.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>joiner.yml</b><em class="viz__st" data-st>ready 08:58</em></div>
-          <svg class="viz__svg" viewBox="0 0 600 360" aria-hidden="true" focusable="false">
-            <path class="g-base" d="M238 140L136 88M238 180H116M238 220L136 272M362 140L464 88M362 180H484M362 220L464 272"/>
-            <path class="g-link" d="M238 140L136 88"/>
-            <path class="g-link" d="M238 180H116"/>
-            <path class="g-link" d="M238 220L136 272"/>
-            <path class="g-link" d="M362 140L464 88"/>
-            <path class="g-link" d="M362 180H484"/>
-            <path class="g-link" d="M362 220L464 272"/>
-            <g class="g-node" transform="translate(110 76)"><circle r="27"/><text y="4">mail</text><text class="g-t" y="47">08:51</text></g>
-            <g class="g-node" transform="translate(88 180)"><circle r="27"/><text y="4">teams</text><text class="g-t" y="47">08:52</text></g>
-            <g class="g-node" transform="translate(110 284)"><circle r="27"/><text y="4">files</text><text class="g-t" y="47">08:53</text></g>
-            <g class="g-node" transform="translate(490 76)"><circle r="27"/><text y="4">crm</text><text class="g-t" y="47">08:54</text></g>
-            <g class="g-node" transform="translate(512 180)"><circle r="27"/><text y="4">wi-fi</text><text class="g-t" y="47">08:55</text></g>
-            <g class="g-node" transform="translate(490 284)"><circle r="27"/><text y="4">laptop</text><text class="g-t" y="47">08:57</text></g>
-            <g class="g-card" transform="translate(300 180)">
-              <rect class="g-body" x="-62" y="-88" width="124" height="176" rx="12"/>
-              <rect class="g-slot" x="-17" y="-79" width="34" height="6" rx="3"/>
-              <rect class="g-photo" x="-46" y="-62" width="48" height="54" rx="3"/>
-              <text class="g-ini" x="-22" y="-28">JL</text>
-              <rect class="g-chip" x="18" y="-58" width="28" height="21" rx="4"/>
-              <rect class="g-ph" x="-46" y="4" width="84" height="12" rx="2"/>
-              <rect class="g-ph" x="-46" y="24" width="58" height="8" rx="2"/>
-              <text class="g-name" x="-46" y="15">Jordan Lee</text>
-              <text class="g-role" x="-46" y="32">sales · day 1</text>
-              <g class="g-pill"><rect x="-46" y="50" width="92" height="22" rx="11"/><text y="65">ready</text></g>
-            </g>
-          </svg>
-        </figure>
-      </article>
-
-      <!-- 10:00 patches -->
-      <article class="scene" id="s-patch" data-scene="patch" data-time="10:00">
-        <header class="scene__head">
-          <time class="scene__time">10:00</time>
-          <h3 class="scene__title">patches, in rings<i>.</i></h3>
-          <p class="scene__tags"><span>Intune</span><span>Windows</span><span>macOS</span><span>iOS</span><span>Android</span></p>
-        </header>
-        <figure class="viz viz--patch" aria-label="A security update rolls out across 63 managed devices: four pilot devices first, then twelve early ones, then everyone else, until all are patched.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>update-rings</b><em class="viz__st" data-st>63/63 patched</em></div>
-          <div class="pf">
-            <div class="pf__grid" data-pf-grid></div>
-            <div class="pf__rings">
-              <p class="pf__ring"><span>ring 0 · pilot</span><i><b data-pf-bar="0"></b></i><em data-pf-n="0">4/4</em></p>
-              <p class="pf__ring"><span>ring 1 · early</span><i><b data-pf-bar="1"></b></i><em data-pf-n="1">12/12</em></p>
-              <p class="pf__ring"><span>ring 2 · broad</span><i><b data-pf-bar="2"></b></i><em data-pf-n="2">47/47</em></p>
-            </div>
-            <p class="pf__you" data-pf-you><i aria-hidden="true"></i>yellow = your device · not managed</p>
-          </div>
-        </figure>
-      </article>
-
-      <!-- 11:12 phishing -->
-      <article class="scene" id="s-phish" data-scene="phish" data-time="11:12">
-        <header class="scene__head">
-          <time class="scene__time">11:12</time>
-          <h3 class="scene__title">phishing, quarantined<i>.</i></h3>
-          <p class="scene__tags"><span>email scanning</span><span>link checks</span><span>Defender for Office 365</span></p>
-        </header>
-        <figure class="viz viz--phish" aria-label="An inbox fills with mail. One message from a lookalike Microsoft domain is flagged and moved to quarantine before anyone opens it.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>mail-gateway</b><em class="viz__st viz__st--bad" data-st>1 quarantined</em></div>
-          <div class="inbox">
-            <p class="inbox__head"><b>inbox</b><span class="inbox__q">quarantine <b data-q>1</b></span></p>
-            <ul class="inbox__list">
-              <li class="mail"><b>Payroll</b><span>March pay stubs</span><time>10:58</time></li>
-              <li class="mail"><b>Jordan Lee</b><span>Lunch at 12?</span><time>11:03</time></li>
-              <li class="mail mail--bad"><b>micros0ft-billing</b><span>Your account is locked</span><time>11:12</time><em>quarantined · lookalike domain</em></li>
-              <li class="mail"><b>Supplier</b><span>Invoice 4471</span><time>11:15</time></li>
-              <li class="mail"><b>Calendar</b><span>2 pm sync</span><time>11:20</time></li>
-            </ul>
-          </div>
-        </figure>
-      </article>
-
-      <!-- 12:30 threat hunt -->
-      <article class="scene" id="s-hunt" data-scene="hunt" data-time="12:30">
-        <header class="scene__head">
-          <time class="scene__time">12:30</time>
-          <h3 class="scene__title">threat hunted<i>.</i></h3>
-          <p class="scene__tags"><span>EDR</span><span>threat hunting</span><span>24/7 monitoring</span><span>remediation</span></p>
-        </header>
-        <figure class="viz viz--hunt" aria-label="A radar sweeps over the company's devices, finds hidden malware on one laptop, isolates it and cleans it.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>edr · sweep</b><em class="viz__st" data-st>clean</em></div>
-          <div class="hunt">
-            <canvas class="hunt__radar" data-radar></canvas>
-            <dl class="hunt__stats">
-              <div><dt>devices</dt><dd>14</dd></div>
-              <div><dt>threats</dt><dd data-hunt-found>1</dd></div>
-              <div><dt>cleaned</dt><dd data-hunt-fixed>1</dd></div>
-              <div><dt>target</dt><dd data-hunt-target>LY-LT-019</dd></div>
-            </dl>
-          </div>
-        </figure>
-      </article>
-
-      <!-- 13:05 help desk -->
-      <article class="scene" id="s-desk" data-scene="desk" data-time="13:05">
-        <header class="scene__head">
-          <time class="scene__time">13:05</time>
-          <h3 class="scene__title">fixed in 12 minutes<i>.</i></h3>
-          <p class="scene__tags"><span>help desk</span><span>remote</span><span>on-site in Victoria</span></p>
-        </header>
-        <figure class="viz viz--desk" aria-label="A help desk ticket for an offline printer moves from new to resolved in twelve minutes and gets a five-star rating.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>ticket #4821</b><em class="viz__st" data-st>resolved</em></div>
-          <div class="tk">
-            <p class="tk__top"><b>#4821</b><span>front desk · printer</span><span class="tk__timer" data-timer>12:04</span></p>
-            <p class="tk__subj">“printer says offline”</p>
-            <ol class="tk__steps">
-              <li class="tk__step">new</li>
-              <li class="tk__step">assigned</li>
-              <li class="tk__step">fixing</li>
-              <li class="tk__step">resolved</li>
-            </ol>
-            <p class="tk__fix"><span>fix</span>queue re-mapped · driver updated</p>
-            <p class="tk__stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></p>
-          </div>
-        </figure>
-      </article>
-
-      <!-- 14:00 backups -->
-      <article class="scene" id="s-backup" data-scene="backup" data-time="14:00">
-        <header class="scene__head">
-          <time class="scene__time">14:00</time>
-          <h3 class="scene__title">backups, tested<i>.</i></h3>
-          <p class="scene__tags"><span>Acronis</span><span>Microsoft 365 backup</span><span>disaster recovery</span></p>
-        </header>
-        <figure class="viz viz--backup" aria-label="A deleted spreadsheet is restored from an hourly snapshot in about two minutes.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>restore</b><em class="viz__st" data-st>restored · 2m 11s</em></div>
-          <svg class="viz__svg" viewBox="0 0 600 300" aria-hidden="true" focusable="false">
-            <g class="k-file" transform="translate(300 64)">
-              <rect class="k-card" x="-138" y="-36" width="276" height="72" rx="8"/>
-              <path class="k-ico" d="M-116 -20h22l9 9v31h-31z"/>
-              <text class="k-name" x="-72" y="-5">budget-2026.xlsx</text>
-              <text class="k-state k-state--bad" x="-72" y="17">deleted · 13:58</text>
-              <text class="k-state k-state--ok" x="-72" y="17">restored · v 09:00</text>
-            </g>
-            <path class="k-arc" d="M106 156C106 104 150 92 162 86"/>
-            <g class="k-bars" data-k-bars></g>
-            <path class="k-axis" d="M40 236H560"/>
-            <text class="k-lbl" x="40" y="262">mon 09:00</text>
-            <text class="k-lbl k-lbl--end" x="560" y="262">now</text>
-            <g class="k-head"><path d="M0 140V242"/><circle cy="140" r="6"/></g>
-          </svg>
-        </figure>
-      </article>
-
-      <!-- 15:30 network -->
-      <article class="scene" id="s-net" data-scene="net" data-time="15:30">
-        <header class="scene__head">
-          <time class="scene__time">15:30</time>
-          <h3 class="scene__title">network, locked down<i>.</i></h3>
-          <p class="scene__tags"><span>firewall</span><span>switches</span><span>Wi-Fi</span><span>Fortinet</span><span>Meraki</span></p>
-        </header>
-        <figure class="viz viz--net" aria-label="Traffic flows from the internet through a firewall and switch to three Wi-Fi access points. Hostile probes are dropped at the firewall, and a third access point comes online.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>netflow</b><em class="viz__st" data-st>3 aps online</em></div>
-          <svg class="viz__svg" viewBox="0 0 600 340" aria-hidden="true" focusable="false" data-net>
-            <path class="n-link" id="n-p0" d="M100 170H174"/>
-            <path class="n-link" id="n-p1" d="M226 170H290"/>
-            <path class="n-link" id="n-p2" d="M350 162L452 84"/>
-            <path class="n-link" id="n-p3" d="M350 170H466"/>
-            <path class="n-link n-link--new" id="n-p4" d="M350 178L452 256"/>
-            <g class="n-node" transform="translate(60 170)">
-              <path class="ln" d="M-30 12a14 14 0 0 1 2-28 18 18 0 0 1 34-6 13 13 0 0 1 24 10 12 12 0 0 1-4 24z"/>
-              <text class="n-lbl" y="44">internet</text>
-            </g>
-            <g class="n-node n-fw" transform="translate(200 170)">
-              <rect class="ln" x="-26" y="-24" width="52" height="48" rx="4"/>
-              <path class="ln ln--thin" d="M-26 -8h52M-26 8h52M-10 -24v16M10 -8v16M-14 8v16M14 8v16"/>
-              <text class="n-lbl" y="46">firewall</text>
-            </g>
-            <g class="n-node" transform="translate(320 170)">
-              <rect class="ln" x="-30" y="-12" width="60" height="24" rx="3"/>
-              <path class="o-ports" d="M-22 -4h6v8h-6zM-12 -4h6v8h-6zM-2 -4h6v8h-6zM8 -4h6v8h-6z"/>
-              <text class="n-lbl" y="38">switch</text>
-            </g>
-            <g class="n-node n-ap" transform="translate(480 72)">
-              <ellipse class="ln" cy="8" rx="18" ry="7"/><path class="o-wave" d="M-16 -8a23 23 0 0 1 32 0M-10 -2a14 14 0 0 1 20 0"/>
-              <text class="n-lbl" y="34">ap-1</text>
-            </g>
-            <g class="n-node n-ap" transform="translate(496 170)">
-              <ellipse class="ln" cy="8" rx="18" ry="7"/><path class="o-wave" d="M-16 -8a23 23 0 0 1 32 0M-10 -2a14 14 0 0 1 20 0"/>
-              <text class="n-lbl" y="34">ap-2</text>
-            </g>
-            <g class="n-node n-ap n-ap--new" transform="translate(480 268)">
-              <ellipse class="ln" cy="8" rx="18" ry="7"/><path class="o-wave" d="M-16 -8a23 23 0 0 1 32 0M-10 -2a14 14 0 0 1 20 0"/>
-              <text class="n-lbl" y="34">ap-3</text>
-            </g>
-            <g data-packets></g>
-            <text class="n-count" x="30" y="44">dropped <tspan data-dropped>214</tspan></text>
-          </svg>
-        </figure>
-      </article>
-
-      <!-- 16:10 phones -->
-      <article class="scene" id="s-phone" data-scene="phone" data-time="16:10">
-        <header class="scene__head">
-          <time class="scene__time">16:10</time>
-          <h3 class="scene__title">calls, routed<i>.</i></h3>
-          <p class="scene__tags"><span>3CX</span><span>VoIP</span><span>unlimited North America calling</span></p>
-        </header>
-        <figure class="viz viz--phone" aria-label="A customer calls, chooses option one in the phone menu and is connected to the sales line in three seconds.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>pbx</b><em class="viz__st" data-st>connected 00:03</em></div>
-          <svg class="viz__svg" viewBox="0 0 600 300" aria-hidden="true" focusable="false">
-            <path class="c-base" d="M126 150H232M368 150C410 150 410 70 446 70M368 150H446M368 150C410 150 410 230 446 230"/>
-            <path class="c-line c-line--1" d="M126 150H232"/>
-            <path class="c-line c-line--2" d="M368 150H446"/>
-            <g class="c-caller" transform="translate(90 150)">
-              <circle class="c-ring c-ring--1" r="32"/><circle class="c-ring c-ring--2" r="32"/>
-              <circle class="c-face" r="32"/>
-              <path class="c-handset" d="M-13 -11c3-3 6-3 8 0l4 5c1 2 1 4-1 5l-3 2c2 5 5 8 10 10l2-3c1-2 3-2 5-1l5 4c3 2 3 5 0 8l-3 3c-3 3-9 3-15-1-7-4-12-10-15-17-2-5-2-10 1-13z"/>
-              <text class="c-num" y="56">+1 250 555 0142</text>
-            </g>
-            <g class="c-ivr" transform="translate(300 150)">
-              <rect class="c-box" x="-68" y="-58" width="136" height="116" rx="8"/>
-              <text class="c-ivr__t" y="-34">menu</text>
-              <text class="c-opt c-opt--hit" x="-48" y="-6">1  sales</text>
-              <text class="c-opt" x="-48" y="18">2  support</text>
-              <text class="c-opt" x="-48" y="42">0  reception</text>
-              <g class="c-key"><circle cx="62" cy="-58" r="15"/><text x="62" y="-53">1</text></g>
-            </g>
-            <g class="c-ext" transform="translate(504 70)"><rect x="-56" y="-24" width="112" height="48" rx="6"/><text class="c-ext__n" x="-42" y="-3">200</text><text class="c-ext__d" x="-42" y="14">reception</text></g>
-            <g class="c-ext c-ext--hit" transform="translate(504 150)">
-              <rect x="-56" y="-24" width="112" height="48" rx="6"/>
-              <text class="c-ext__n" x="-42" y="-3">201</text><text class="c-ext__d" x="-42" y="14">sales</text>
-              <g class="c-wave"><rect x="14" y="-9" width="4" height="18" rx="2"/><rect x="21" y="-9" width="4" height="18" rx="2"/><rect x="28" y="-9" width="4" height="18" rx="2"/><rect x="35" y="-9" width="4" height="18" rx="2"/><rect x="42" y="-9" width="4" height="18" rx="2"/></g>
-            </g>
-            <g class="c-ext" transform="translate(504 230)"><rect x="-56" y="-24" width="112" height="48" rx="6"/><text class="c-ext__n" x="-42" y="-3">202</text><text class="c-ext__d" x="-42" y="14">support</text></g>
-          </svg>
-        </figure>
-      </article>
-
-      <!-- 17:00 last logoff -->
-      <article class="scene" id="s-offboard" data-scene="offboard" data-time="17:00">
-        <header class="scene__head">
-          <time class="scene__time">17:00</time>
-          <h3 class="scene__title">last logoff<i>.</i></h3>
-          <p class="scene__tags"><span>sign-in blocked</span><span>mail to manager</span><span>files kept</span><span>laptop wiped</span></p>
-        </header>
-        <figure class="viz viz--graph viz--leave" aria-label="At 17:00 a departing employee's mail, Teams, files, CRM, Wi-Fi and laptop access are cut one by one, and the badge is stamped revoked.">
-          <div class="viz__bar"><i></i><i></i><i></i><b>leaver.yml</b><em class="viz__st viz__st--bad" data-st>revoked 17:00:00</em></div>
-          <svg class="viz__svg" viewBox="0 0 600 360" aria-hidden="true" focusable="false">
-            <path class="g-base" d="M238 140L136 88M238 180H116M238 220L136 272M362 140L464 88M362 180H484M362 220L464 272"/>
-            <path class="g-link" d="M238 140L136 88"/>
-            <path class="g-link" d="M238 180H116"/>
-            <path class="g-link" d="M238 220L136 272"/>
-            <path class="g-link" d="M362 140L464 88"/>
-            <path class="g-link" d="M362 180H484"/>
-            <path class="g-link" d="M362 220L464 272"/>
-            <g class="g-node" transform="translate(110 76)"><circle r="27"/><text y="4">mail</text><text class="g-t" y="47">→ manager</text></g>
-            <g class="g-node" transform="translate(88 180)"><circle r="27"/><text y="4">teams</text><text class="g-t" y="47">signed out</text></g>
-            <g class="g-node" transform="translate(110 284)"><circle r="27"/><text y="4">files</text><text class="g-t" y="47">kept 90 d</text></g>
-            <g class="g-node" transform="translate(490 76)"><circle r="27"/><text y="4">crm</text><text class="g-t" y="47">removed</text></g>
-            <g class="g-node" transform="translate(512 180)"><circle r="27"/><text y="4">wi-fi</text><text class="g-t" y="47">revoked</text></g>
-            <g class="g-node" transform="translate(490 284)"><circle r="27"/><text y="4">laptop</text><text class="g-t" y="47">wiped</text></g>
-            <g class="g-card" transform="translate(300 180)">
-              <rect class="g-body" x="-62" y="-88" width="124" height="176" rx="12"/>
-              <rect class="g-slot" x="-17" y="-79" width="34" height="6" rx="3"/>
-              <rect class="g-photo" x="-46" y="-62" width="48" height="54" rx="3"/>
-              <text class="g-ini" x="-22" y="-28">SO</text>
-              <rect class="g-chip" x="18" y="-58" width="28" height="21" rx="4"/>
-              <text class="g-name" x="-46" y="15">Sam Ortiz</text>
-              <text class="g-role" x="-46" y="32">finance · last day</text>
-              <g transform="translate(0 42) rotate(-12)"><g class="g-stamp"><rect x="-70" y="-17" width="140" height="34" rx="4"/><text y="6">revoked</text></g></g>
-            </g>
-          </svg>
-        </figure>
-      </article>
-
-      <!-- 18:00 -->
-      <article class="scene scene--end" id="s-night" data-scene="night" data-time="18:00">
-        <header class="scene__head">
-          <time class="scene__time">18:00</time>
-          <h3 class="scene__title">you log off. we keep watch<i>.</i></h3>
-          <p class="scene__tags"><span>monitoring 24/7</span><span>after-hours support</span><span>monthly report</span></p>
-        </header>
-        <svg class="pulse" viewBox="0 0 600 90" aria-hidden="true" focusable="false"><path class="pulse__base" d="M0 46H600"/><path class="pulse__beat" d="M0 46H200l10-20 12 52 14-70 12 52 10-14h342"/></svg>
-      </article>
-
-    </div>
-  </div>
 </section>
 
-<!-- PLANS =============================================================== -->
-<section class="sec" id="plans" aria-labelledby="plans-title" data-section="plans">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="sec-head__path"><span>~/plans</span><span aria-hidden="true">lanyard --help</span></p>
-      <h2 class="h2" id="plans-title" data-scramble>pick a plan<i>.</i></h2>
-      <div class="calc">
-        <label class="calc__label" for="seats">team size</label>
-        <output class="calc__out" for="seats" data-seats-out>15 people</output>
-        <input class="calc__range" id="seats" type="range" min="1" max="150" step="1" value="15" data-seats>
-      </div>
+<!-- FAQ -->
+<section class="section section--alt" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq-wrap">
+    <header class="section__head section__head--left">
+      <p class="eyebrow">FAQ</p>
+      <h2 id="faq-title">Questions we hear a lot.</h2>
     </header>
-
-    <div class="tiers">
-      <article class="tier" data-tier="security" data-price="30">
-        <p class="tier__flag">--secure</p>
-        <h3 class="tier__name">security essentials</h3>
-        <p class="tier__total"><b data-total>$450</b><span>/mo</span></p>
-        <p class="tier__per">$30 per person</p>
-        <ul class="tier__list">
-          <li>antivirus + EDR</li>
-          <li>email scanning</li>
-          <li>threat hunting</li>
-          <li>remediation</li>
-        </ul>
-        <a class="btn" href="#contact" data-plan="security">Choose</a>
-      </article>
-      <article class="tier tier--main" data-tier="managed" data-price="100">
-        <p class="tier__flag">--managed</p>
-        <h3 class="tier__name">managed it</h3>
-        <p class="tier__total"><b data-total>$1,500</b><span>/mo</span></p>
-        <p class="tier__per">$100 per person</p>
-        <ul class="tier__list">
-          <li class="tier__inc">everything in --secure</li>
-          <li>help desk</li>
-          <li>endpoints · Intune</li>
-          <li>onboarding + offboarding</li>
-          <li>IT roadmap</li>
-          <li>hardware discounts</li>
-        </ul>
-        <a class="btn btn--yellow" href="#contact" data-plan="managed">Choose <span aria-hidden="true">→</span></a>
-      </article>
-      <article class="tier" data-tier="office" data-price="225">
-        <p class="tier__flag">--office-in-a-box</p>
-        <h3 class="tier__name">office in a box</h3>
-        <p class="tier__total"><b data-total>$3,375</b><span>/mo</span></p>
-        <p class="tier__per">$225 per person</p>
-        <ul class="tier__list">
-          <li class="tier__inc">everything in --managed</li>
-          <li>business PCs</li>
-          <li>firewall, switches, Wi-Fi</li>
-          <li>Microsoft 365 Business Premium</li>
-          <li>phones · unlimited NA calling</li>
-        </ul>
-        <a class="btn" href="#contact" data-plan="office">Choose</a>
-      </article>
-    </div>
-
-    <div class="plans__foot">
-      <p class="plans__note">Guide prices. Every quote is custom. Projects (Windows 11, office moves, ERP) get a fixed price.</p>
-      <p class="sr-only">How we start:</p>
-      <ol class="route">
-        <li><b>call</b><span>free</span></li>
-        <li><b>audit</b><span>free</span></li>
-        <li><b>plan</b></li>
-        <li><b>onboard</b></li>
-        <li><b>run</b></li>
-      </ol>
+    <div class="faq">
+      <details class="faq__q">
+        <summary>What does a managed IT company actually do?</summary>
+        <p>We act as your IT department. We set up and look after your computers, email, Wi-Fi, phones and backups, keep everything secure, and we're who you call when something goes wrong.</p>
+      </details>
+      <details class="faq__q">
+        <summary>Do we need our own IT person?</summary>
+        <p>No. Most businesses we work with don't have one. If you do, we can support them too.</p>
+      </details>
+      <details class="faq__q">
+        <summary>What are your support hours?</summary>
+        <p>Business hours by default, with 24/7 support available if your business needs it.</p>
+      </details>
+      <details class="faq__q">
+        <summary>Will we need new computers?</summary>
+        <p>Usually not. We'll tell you what's worth keeping, and if you need new equipment, we can lease it to you with little upfront cost.</p>
+      </details>
+      <details class="faq__q">
+        <summary>How big does our business need to be?</summary>
+        <p>We work with businesses of all sizes, from a few people to a hundred or more.</p>
+      </details>
+      <details class="faq__q">
+        <summary>How long does it take to get started?</summary>
+        <p>The free IT check takes about an hour. After that, most businesses are fully set up within a few weeks.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ABOUT =============================================================== -->
-<section class="sec sec--alt" id="about" aria-labelledby="about-title" data-section="about">
-  <div class="wrap about">
-    <div class="about__badge">
-      <div class="badge-stage" data-badge-stage>
-        <svg class="badge-strap" data-badge-strap aria-hidden="true" focusable="false">
-          <path id="strap-path" class="badge-strap__band" d="M0 0"/>
-          <text class="badge-strap__text"><textPath href="#strap-path">LANYARD · LANYARD · LANYARD · LANYARD · LANYARD · LANYARD · LANYARD · LANYARD · LANYARD · LANYARD ·</textPath></text>
-        </svg>
-        <div class="badge" data-badge role="img" aria-label="Founder ID badge. Hallam Pak, founder, Lanyard Systems. You can drag it.">
-          <div class="badge__slot" aria-hidden="true"></div>
-          <div class="badge__head" aria-hidden="true">
-            <svg class="mark" viewBox="0 0 64 64" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
-            <span>lanyard_</span><b>staff</b>
-          </div>
-          <div class="badge__photo" aria-hidden="true"><span>HP</span></div>
-          <p class="badge__name" aria-hidden="true">Hallam Pak</p>
-          <p class="badge__role" aria-hidden="true">Founder · lead engineer</p>
-          <dl class="badge__meta" aria-hidden="true">
-            <div><dt>id</dt><dd>LY-0001</dd></div>
-            <div><dt>access</dt><dd>all areas</dd></div>
-            <div><dt>issued</dt><dd>2026-11</dd></div>
-          </dl>
-          <svg class="badge__barcode" data-barcode="LY-0001" aria-hidden="true" focusable="false"></svg>
-          <span class="badge__chip" aria-hidden="true"></span>
-        </div>
-        <p class="badge-stage__hint" aria-hidden="true">drag me</p>
-      </div>
-    </div>
-
-    <div class="about__text">
-      <header class="sec-head sec-head--tight">
-        <p class="sec-head__path"><span>~/about</span><span aria-hidden="true">$ whoami</span></p>
-        <h2 class="h2" id="about-title" data-scramble>hi, i'm hallam<i>.</i></h2>
-      </header>
-      <p class="about__lead">IT analyst from a secure federal defence environment. Now on your team.</p>
-      <dl class="stats" data-stats>
-        <div><dt>people supported</dt><dd data-count="1000" data-suffix="+">1,000+</dd></div>
-        <div><dt>smart-card identities</dt><dd data-count="150" data-suffix="+">150+</dd></div>
-        <div><dt>desktops rolled out</dt><dd data-count="66">66</dd></div>
-        <div><dt>machines audited</dt><dd data-count="125" data-suffix="+">125+</dd></div>
-      </dl>
-      <ul class="stack">
-        <li>Intune</li><li>Autopilot</li><li>Entra ID</li><li>Microsoft 365</li><li>Windows 11</li><li>Apple Business Manager</li><li>PKI smart cards</li><li>PowerShell</li><li>JavaScript</li><li>C#</li>
+<!-- CONTACT -->
+<section class="cta" id="contact" aria-labelledby="contact-title">
+  <div class="wrap cta__in">
+    <div class="cta__copy">
+      <p class="eyebrow eyebrow--light">Free IT check</p>
+      <h2 id="contact-title">Let's see how we can help.</h2>
+      <p class="cta__lead">Tell us a little about your business. We'll book a free IT check and give you a clear plan and price.</p>
+      <ul class="cta__list">
+        <li>No obligation</li>
+        <li>Advice in plain English</li>
+        <li>A fixed monthly price</li>
       </ul>
-      <p class="about__train">training: ITIL 4 Foundation · CompTIA Security+ · University of Victoria</p>
+      <p class="cta__mail">Prefer email? <a href="mailto:hello@lanyard.example" data-email>hello@lanyard.example</a></p>
     </div>
-  </div>
-</section>
 
-<!-- FAQ ================================================================= -->
-<section class="sec" id="faq" aria-labelledby="faq-title" data-section="faq">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="sec-head__path"><span>~/faq</span><span aria-hidden="true">$ man lanyard</span></p>
-      <h2 class="h2" id="faq-title" data-scramble>questions<i>.</i></h2>
-    </header>
-    <div class="man">
-      <p class="man__rule" aria-hidden="true"><span>LANYARD(1)</span><span>Lanyard Manual</span><span>LANYARD(1)</span></p>
-      <details class="man__q">
-        <summary><code>--size</code><span>How big are your clients?</span></summary>
-        <div class="man__a"><p>5 to 100 people without a full-time IT person. Or one IT person who needs backup.</p></div>
-      </details>
-      <details class="man__q">
-        <summary><code>--hours</code><span>When can we reach you?</span></summary>
-        <div class="man__a"><p>Business hours by default. 24/7 if you need it.</p></div>
-      </details>
-      <details class="man__q">
-        <summary><code>--on-site</code><span>Do you come on site?</span></summary>
-        <div class="man__a"><p>Yes, across Greater Victoria. Everything else remotely.</p></div>
-      </details>
-      <details class="man__q">
-        <summary><code>--hardware</code><span>Do we need new laptops?</span></summary>
-        <div class="man__a"><p>Probably not. We enrol what you have, or lease you new ones with little upfront cost.</p></div>
-      </details>
-      <details class="man__q">
-        <summary><code>--access</code><span>Who controls our systems?</span></summary>
-        <div class="man__a"><p>You do. We use named admin accounts with MFA, every change is logged, and you can remove us any time.</p></div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT ============================================================= -->
-<section class="sec sec--alt" id="contact" aria-labelledby="contact-title" data-section="contact">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="sec-head__path"><span>~/contact</span><span aria-hidden="true">./open-ticket.sh</span></p>
-      <h2 class="h2" id="contact-title" data-scramble>open a ticket<i>.</i></h2>
-      <p class="sec-head__intro">Free 30-minute call. No sales script.</p>
-    </header>
-
-    <div class="contact">
-      <form class="ticket-form" data-ticket-form novalidate>
-        <div class="field-row">
+    <div class="cta__card">
+      <form class="form" data-form novalidate>
+        <div class="form__row">
           <div class="field">
-            <label for="t-name">Name</label>
-            <input id="t-name" name="name" type="text" autocomplete="name" required placeholder="Jordan Lee">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
           </div>
           <div class="field">
-            <label for="t-email">Work email</label>
-            <input id="t-email" name="email" type="email" autocomplete="email" required placeholder="jordan@company.ca">
+            <label for="f-business">Business name</label>
+            <input id="f-business" name="business" type="text" autocomplete="organization">
           </div>
         </div>
-        <fieldset class="field">
-          <legend>Need help with</legend>
-          <div class="chips">
-            <input type="checkbox" id="t-n-end" name="needs" value="endpoints"><label for="t-n-end">endpoints</label>
-            <input type="checkbox" id="t-n-on" name="needs" value="onboarding"><label for="t-n-on">on/offboarding</label>
-            <input type="checkbox" id="t-n-sec" name="needs" value="security"><label for="t-n-sec">security</label>
-            <input type="checkbox" id="t-n-mail" name="needs" value="email"><label for="t-n-mail">email</label>
-            <input type="checkbox" id="t-n-bak" name="needs" value="backups"><label for="t-n-bak">backups</label>
-            <input type="checkbox" id="t-n-net" name="needs" value="network"><label for="t-n-net">network</label>
-            <input type="checkbox" id="t-n-tel" name="needs" value="phones"><label for="t-n-tel">phones</label>
-            <input type="checkbox" id="t-n-help" name="needs" value="help-desk"><label for="t-n-help">help desk</label>
+        <div class="form__row">
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
           </div>
-        </fieldset>
+          <div class="field">
+            <label for="f-phone">Phone <span class="opt">(optional)</span></label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-size">How many people?</label>
+          <select id="f-size" name="size">
+            <option value="1-5">1 to 5</option>
+            <option value="6-20" selected>6 to 20</option>
+            <option value="21-50">21 to 50</option>
+            <option value="51+">More than 50</option>
+          </select>
+        </div>
         <fieldset class="field">
-          <legend>Urgency</legend>
-          <div class="chips chips--prio">
-            <input type="radio" id="t-u-4" name="priority" value="P4" checked><label for="t-u-4"><b>P4</b> exploring</label>
-            <input type="radio" id="t-u-3" name="priority" value="P3"><label for="t-u-3"><b>P3</b> this quarter</label>
-            <input type="radio" id="t-u-2" name="priority" value="P2"><label for="t-u-2"><b>P2</b> this month</label>
-            <input type="radio" id="t-u-1" name="priority" value="P1"><label for="t-u-1"><b>P1</b> on fire</label>
+          <legend>What can we help with?</legend>
+          <div class="pills">
+            <input type="checkbox" id="f-n-all" name="needs" value="Everything"><label for="f-n-all">Everything</label>
+            <input type="checkbox" id="f-n-sec" name="needs" value="Security"><label for="f-n-sec">Security</label>
+            <input type="checkbox" id="f-n-mail" name="needs" value="Email"><label for="f-n-mail">Email</label>
+            <input type="checkbox" id="f-n-net" name="needs" value="Wi-Fi and network"><label for="f-n-net">Wi-Fi and network</label>
+            <input type="checkbox" id="f-n-tel" name="needs" value="Phones"><label for="f-n-tel">Phones</label>
+            <input type="checkbox" id="f-n-bak" name="needs" value="Backups"><label for="f-n-bak">Backups</label>
+            <input type="checkbox" id="f-n-hw" name="needs" value="Computers"><label for="f-n-hw">Computers</label>
+            <input type="checkbox" id="f-n-ns" name="needs" value="Not sure"><label for="f-n-ns">Not sure</label>
           </div>
         </fieldset>
         <div class="field">
-          <label for="t-msg">Anything else?</label>
-          <textarea id="t-msg" name="message" rows="3" placeholder="18 people, mostly laptops, nobody owns IT."></textarea>
+          <label for="f-msg">Anything else? <span class="opt">(optional)</span></label>
+          <textarea id="f-msg" name="message" rows="3"></textarea>
         </div>
-        <input type="hidden" name="plan" value="not-sure">
-        <input type="hidden" name="seats" value="15">
-        <p class="form-error" data-form-error role="alert" hidden></p>
-        <div class="form-actions">
-          <button class="btn btn--yellow" type="submit">Open ticket <span aria-hidden="true">→</span></button>
-          <p class="muted form-note">No tracking. Used only to reply.</p>
-        </div>
+        <input type="hidden" name="plan" value="">
+        <p class="form__error" data-form-error role="alert" hidden></p>
+        <button class="btn btn--blue form__submit" type="submit">Book my free IT check</button>
       </form>
 
-      <aside class="contact__aside" aria-label="Ticket preview and direct contact">
-        <figure class="code code--ticket">
-          <figcaption><span>ticket.json</span><span class="muted">live</span></figcaption>
-          <pre data-ticket-preview>{ }</pre>
-        </figure>
-        <div class="direct">
-          <p class="direct__mail"><a href="mailto:hello@lanyard.example" data-email>hello@lanyard.example</a></p>
-          <button type="button" class="btn btn--small" data-copy="hello@lanyard.example">Copy</button>
-        </div>
-      </aside>
-    </div>
-
-    <div class="ticket-done" data-ticket-done hidden tabindex="-1">
-      <p class="ticket-done__id" data-ticket-id>LY-0000</p>
-      <p class="ticket-done__msg" data-ticket-msg></p>
-      <pre class="ticket-done__copy" data-ticket-text></pre>
-      <div class="ticket-done__actions">
-        <button type="button" class="btn btn--small" data-copy-ticket>Copy ticket</button>
-        <button type="button" class="btn btn--small btn--text" data-ticket-new>Open another</button>
+      <div class="done" data-done hidden tabindex="-1">
+        <span class="done__ic" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10.5l3.2 3.2L15 7"/></svg></span>
+        <h3>Thanks, <span data-done-name>there</span>!</h3>
+        <p data-done-msg></p>
+        <button class="btn btn--outline btn--sm" type="button" data-done-again>Send another message</button>
       </div>
     </div>
   </div>
@@ -782,39 +442,30 @@
 
 </main>
 
-<!-- FOOTER ============================================================== -->
 <footer class="foot">
-  <div class="wrap">
-    <div class="foot__term" aria-hidden="true">
-      <p><span class="prompt">visitor@lanyard:~$</span> logout</p>
-      <p>Connection to lanyard closed. Session lasted <span data-uptime>00:00:00</span>.</p>
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <a class="brand brand--light" href="#top" aria-label="Lanyard, back to top">
+        <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
+        <span class="brand__word">lanyard<span class="brand__cur">_</span></span>
+      </a>
+      <p>Managed IT for small businesses in Victoria, BC.</p>
     </div>
-    <p class="foot__word" aria-hidden="true">lanyard<span class="blink">_</span></p>
-    <div class="foot__row">
-      <p>© <span data-year>2026</span> Lanyard Systems · Victoria, BC</p>
-      <p><a href="mailto:hello@lanyard.example" data-email>hello@lanyard.example</a></p>
-      <p data-weight>0 cookies · 0 trackers</p>
-      <p>press <kbd>`</kbd> for a terminal</p>
+    <nav class="foot__nav" aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="foot__contact">
+      <a href="mailto:hello@lanyard.example" data-email>hello@lanyard.example</a>
+      <p>Victoria, BC</p>
     </div>
+  </div>
+  <div class="wrap foot__legal">
+    <p>© <span data-year>2026</span> Lanyard Systems</p>
   </div>
 </footer>
-
-<!-- TERMINAL ============================================================ -->
-<div class="term" data-term role="dialog" aria-modal="true" aria-label="Terminal" hidden>
-  <div class="term__bar">
-    <span>visitor@lanyard: ~ · type <b>help</b></span>
-    <button type="button" class="term__close" data-term-close aria-label="Close terminal">esc ×</button>
-  </div>
-  <div class="term__screen" data-term-screen>
-    <div class="term__out" data-term-out aria-live="polite"></div>
-    <form class="term__line" data-term-form autocomplete="off">
-      <label class="term__prompt" for="term-input">visitor@lanyard:<span data-term-cwd>~</span>$</label>
-      <input id="term-input" class="term__input" data-term-input type="text" spellcheck="false" autocapitalize="off" autocomplete="off" enterkeyhint="send">
-      <button type="submit" class="sr-only">Run command</button>
-    </form>
-  </div>
-</div>
-
-<div class="toast" data-toast role="status" aria-live="polite" hidden></div>
 </body>
 </html>

@@ -30,7 +30,7 @@ function iconPage(size, markScale, radius) {
   const ok = await og.evaluate(() => window.ogReady);
   await og.waitForTimeout(300);
   await og.screenshot({ path: path.join(ROOT, 'assets/img/og-image.png') });
-  console.log('og-image.png', ok ? '(with ASCII render)' : '(no WebGL, text only)');
+  console.log('og-image.png', ok ? 'rendered' : 'rendered (fonts not confirmed)');
 
   // App icons: full-bleed squares (iOS and Android round them themselves)
   const icons = [
