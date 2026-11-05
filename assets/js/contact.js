@@ -96,6 +96,29 @@
       try { window.location.href = 'mailto:' + cfg.email + '?subject=' + subject + '&body=' + body; } catch (ex) { /* the message above explains what to do */ }
     }
 
+    // Fill in what we already know, e.g. from a service panel or the 1-minute check.
+    // Never overwrites anything the visitor typed.
+    let filled = '';
+    function prefill(o) {
+      if (!form) return;
+      o = o || {};
+      if (!form.hidden) {
+        (o.needs || []).forEach((v) => {
+          const box = LY.$$('input[name="needs"]', form).find((i) => i.value === v);
+          if (box) box.checked = true;
+        });
+        const msg = form.elements.message;
+        if (o.message && (!msg.value || msg.value === filled)) { msg.value = o.message; filled = o.message; }
+        else if (o.topic && !msg.value) msg.placeholder = 'Interested in ' + o.topic + '.';
+      }
+      const card = form.closest('.cta__card');
+      if (card && !LY.reduced()) {
+        card.classList.remove('is-flash');
+        void card.offsetWidth;
+        card.classList.add('is-flash');
+      }
+    }
+
     function init() {
       form = LY.$('[data-form]');
       if (!form) return;
@@ -116,6 +139,6 @@
       }));
     }
 
-    return { init };
+    return { init, prefill };
   })();
 })();

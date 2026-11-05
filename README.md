@@ -18,13 +18,40 @@ Then open <http://localhost:8000>.
 
 ## What's on the page
 
-1. **Hero:** "Your IT department, without hiring one," with a live "Your business today" card that ticks off what we handled (computers protected, backup done, scam emails stopped) and pops up small updates.
+Simple at a glance, with more for anyone who wants to look closer.
+
+1. **Hero:** "Your IT department, without hiring one," with a live "Your business today" card that ticks off what we handled and pops up small updates. Every line on the card opens the service behind it.
 2. **What is managed IT?** Three plain answers: we set it up, we keep it safe, we're here when you need us.
-3. **Services:** computers, email and scam protection, Wi-Fi and network security, Microsoft 365, backups, business phones, new staff and leavers, help desk, hardware and leasing.
-4. **How it works:** free IT check, a clear plan, we set it up, we look after it.
-5. **Pricing:** Security Essentials, Managed Services and Office in a Box, with a slider that shows the monthly total for your team size.
-6. **Why Lanyard:** plain English, local, predictable price, your data stays yours.
-7. **FAQ** and a **"Book a free IT check"** form.
+3. **Services:** computers, email and scam protection, Wi-Fi and network security, Microsoft 365, backups, business phones, new staff and leavers, help desk, hardware and leasing. Each card opens a panel with a short explanation and a **live demo** (see below).
+4. **How it works:** free IT check, a clear plan, we set it up, we look after it. Step 1 opens a **sample IT check report**.
+5. **1-minute check:** six yes/no questions, a score out of 100 and what to fix first. Each gap links to the service that fixes it, and the result can be carried into the contact form. Nothing is saved or sent.
+6. **Pricing:** Security Essentials, Managed Services and Office in a Box, with a slider for your team size, a **?** next to each feature that explains it, and a full **plan comparison**.
+7. **Why Lanyard:** plain English, local, predictable price, your data stays yours.
+8. **FAQ** and a **"Book a free IT check"** form. "Get this for your business" in any panel fills in the form for you.
+
+### The live demos
+
+Each one shows the service working, with one thing to try:
+
+| Service | What it shows | Try |
+|---|---|---|
+| Computers | An update rolling out to a test group first, then everyone | Switch to "Left on their own" |
+| Email | A fake Microsoft email caught and held aside | "See why" for the warning signs |
+| Wi-Fi and network | Traffic flowing, attacks stopped at the firewall | "Try an attack" |
+| Microsoft 365 | A weekend move, Friday night to Monday morning | Drag the timeline |
+| Backups | A deleted spreadsheet restored in two minutes | Pick any backup to restore from |
+| Phones | A caller routed to the right person | Press 1, 2 or 0 |
+| New staff and leavers | Access opened on day one, closed on the last day | Switch days |
+| Help desk | A support chat: printer fixed in 12 minutes | Replay |
+| Hardware | An office in a box, online when plugged in | Pick a device |
+| Security | A hidden threat found, isolated and cleaned | Scan again |
+
+The names, numbers and companies in the demos and the sample report are made up for illustration.
+
+### Linking to a panel
+
+Every panel has its own address, so you can link straight to it from an email, a quote or a social post:
+`/#computers`, `/#email`, `/#network`, `/#m365`, `/#backups`, `/#phones`, `/#people`, `/#helpdesk`, `/#hardware`, `/#security`, `/#quiz`, `/#report`, `/#compare`.
 
 ## Before you go live
 
@@ -33,7 +60,7 @@ Then open <http://localhost:8000>.
 3. **Prices.** Change them in one place: `prices` in `assets/js/config.js` (the numbers in `index.html` are only the fallback).
 4. **Contact form.** By default, submitting opens the visitor's email app with their request filled in. To receive requests directly, put a form endpoint (Formspree, Basin or your own) in `formEndpoint` in `assets/js/config.js`, and add its origin to `connect-src` in the Content Security Policy.
 5. **Phone number.** If you want one on the site, add it to the contact section and footer in `index.html`.
-6. **Check the promises** match what you and your partners deliver: on-site visits in Victoria, 24/7 support on request, "back up in hours, not weeks", hardware leasing and discounts, unlimited North America calling, and "leave any time and we'll hand everything over".
+6. **Check the promises** match what you and your partners deliver: on-site visits in Victoria, 24/7 support on request, "back up in hours, not weeks", hardware leasing and discounts, unlimited North America calling, and "leave any time and we'll hand everything over". The "Tools we use" lines in each service panel (Intune, Autopilot, Defender, Fortinet, Meraki, Acronis, 3CX) and the plan comparison table should match your actual stack and plans too.
 7. **Security.txt** expires on 2027-11-01. Update it before then.
 
 ## Deploy
@@ -81,8 +108,11 @@ assets/
   css/main.css        all styles; colours at the top
   js/
     config.js         your settings: email, form endpoint, prices, time zone
-    ui.js             header, mobile menu, the live hero card
-    plans.js          pricing slider
+    ui.js             header, mobile menu, the live hero card, the "?" tips
+    modal.js          the pop-up panel: opening, addresses, prev/next, swipe to close
+    demos.js          the ten live service demos
+    quiz.js           the 1-minute check
+    plans.js          pricing slider and plan comparison
     contact.js        free IT check form
     util.js, main.js  helpers and start-up
   fonts/              WOFF2 files and their licences

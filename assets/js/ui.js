@@ -1,4 +1,6 @@
-/* Header, mobile menu and the live "your business today" card in the hero. */
+/* Header, mobile menu, the live "your business today" card in the hero,
+   the little "?" explanations on the plans, and small touches like the
+   light that follows the pointer across the service cards. */
 (function () {
   'use strict';
   const LY = window.LY = window.LY || {};
@@ -62,7 +64,7 @@
       let visible = true;
       LY.watchVisible(LY.$('.hero'), (v) => { visible = v; });
       const show = () => {
-        if (visible && !document.hidden) {
+        if (visible && !document.hidden && !root.classList.contains('sheet-open')) {
           const [msg, scam] = events[i % events.length];
           i += 1;
           if (scam && blocked) { count += 1; blocked.textContent = count + ' scam emails'; }
@@ -77,6 +79,108 @@
       setTimeout(show, 3600);
     }
 
+    // The "?" buttons next to plan features. One small explanation at a time,
+    // shown next to its button. Uses the Popover API where available, so it
+    // closes on Escape or a tap anywhere else.
+    function tips() {
+      const pop = LY.$('[data-tip-pop]');
+      const btns = LY.$$('[data-tip]');
+      if (!pop || !btns.length) return;
+      const native = typeof pop.showPopover === 'function';
+      if (!native) pop.removeAttribute('popover');
+      pop.id = pop.id || 'tip-pop';
+      let cur = null;
+      let closedBtn = null;
+      let closedAt = 0;
+      let wait = 0;
+      const isOpen = () => (native ? pop.matches(':popover-open') : pop.classList.contains('is-open'));
+
+      function place() {
+        if (!cur) return;
+        const r = cur.getBoundingClientRect();
+        const w = pop.offsetWidth;
+        const h = pop.offsetHeight;
+        const m = 12;
+        const x = Math.max(m, Math.min(window.innerWidth - w - m, r.left + r.width / 2 - w / 2));
+        let y = r.top - h - 12;
+        const below = y < m + 64;
+        if (below) y = r.bottom + 12;
+        pop.style.left = Math.round(x) + 'px';
+        pop.style.top = Math.round(y) + 'px';
+        pop.style.setProperty('--ax', Math.round(r.left + r.width / 2 - x) + 'px');
+        pop.classList.toggle('is-below', below);
+      }
+      function hidden() {
+        if (isOpen()) return;
+        if (cur) { cur.setAttribute('aria-expanded', 'false'); closedBtn = cur; closedAt = performance.now(); }
+        cur = null;
+        pop.classList.remove('is-on');
+      }
+      function hide() {
+        if (native) { if (isOpen()) pop.hidePopover(); } else { pop.classList.remove('is-open'); }
+        hidden();
+      }
+      function show(btn) {
+        if (cur && cur !== btn) cur.setAttribute('aria-expanded', 'false');
+        cur = btn;
+        btn.setAttribute('aria-expanded', 'true');
+        if (btn.nextElementSibling !== pop) btn.after(pop);   // reading order: the explanation follows its button
+        pop.classList.remove('is-on');
+        pop.textContent = '';
+        if (native) { if (!isOpen()) pop.showPopover(); } else pop.classList.add('is-open');
+        // fill it a moment later, so screen readers announce the new text
+        clearTimeout(wait);
+        wait = setTimeout(() => {
+          if (cur !== btn) return;
+          pop.textContent = btn.getAttribute('data-tip');
+          place();
+          pop.classList.add('is-on');
+        }, 40);
+      }
+
+      if (native) {
+        // light dismiss closes the tip on pointerup, before the click lands on a "?":
+        // remember which one was open, so tapping it again closes it instead of reopening
+        pop.addEventListener('beforetoggle', (e) => { if (e.newState === 'closed' && cur) { closedBtn = cur; closedAt = performance.now(); } });
+        pop.addEventListener('toggle', (e) => { if (e.newState === 'closed') hidden(); });
+      }
+      btns.forEach((b) => {
+        b.setAttribute('aria-expanded', 'false');
+        b.setAttribute('aria-controls', pop.id);
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (cur === b && isOpen()) { hide(); return; }
+          if (closedBtn === b && performance.now() - closedAt < 300) return; // this tap just closed it
+          show(b);
+        });
+      });
+      if (!native) {
+        document.addEventListener('click', (e) => { if (cur && !e.target.closest('[data-tip], [data-tip-pop]')) hide(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && cur) { const b = cur; hide(); b.focus(); } });
+      }
+      const follow = () => { if (cur) place(); };
+      window.addEventListener('scroll', follow, { passive: true });
+      window.addEventListener('resize', follow);
+    }
+
+    // A soft light that follows the pointer over the service cards
+    function spotlight() {
+      if (!window.matchMedia || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      LY.$$('.service').forEach((el) => {
+        el.addEventListener('pointermove', (e) => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', Math.round(e.clientX - r.left) + 'px');
+          el.style.setProperty('--my', Math.round(e.clientY - r.top) + 'px');
+        });
+      });
+    }
+
+    // The gauge on the 1-minute check band only moves while it's on screen
+    function band() {
+      const el = LY.$('.quizband');
+      if (el && !LY.reduced()) LY.watchVisible(el, (v) => el.classList.toggle('is-live', v));
+    }
+
     function details() {
       const email = LY.config && LY.config.email;
       if (email) LY.$$('[data-email]').forEach((a) => { a.href = 'mailto:' + email; a.textContent = email; });
@@ -86,6 +190,9 @@
     function init() {
       header();
       board();
+      tips();
+      spotlight();
+      band();
       details();
     }
 
