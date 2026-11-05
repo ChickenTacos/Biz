@@ -26,7 +26,7 @@
     /* ---------- tmux windows + ruler ---------- */
     function initNav() {
       const links = LY.$$('.tmux__wins a');
-      const map = { process: 'fleet', faq: 'about' };
+      const map = { faq: 'about' };
       const sections = LY.$$('[data-section]');
       const ruler = LY.$('[data-ruler]');
       let ticking = false;
@@ -146,29 +146,30 @@
           bytes += b;
         });
         const ms = nav ? Math.round(nav.loadEventEnd || nav.domContentLoadedEventEnd || 0) : 0;
-        if (!sized) { el.textContent = 'served from cache or disk'; return; }
-        el.textContent = Math.round(bytes / 1024) + ' KB over ' + (res.length + 1) + ' requests' + (ms ? ' · loaded in ' + ms + ' ms' : '');
+        if (!sized) return;
+        el.textContent = '0 cookies · 0 trackers · ' + Math.round(bytes / 1024) + ' KB' + (ms ? ' · ' + ms + ' ms' : '');
       };
       if (document.readyState === 'complete') setTimeout(measure, 50);
       else window.addEventListener('load', () => setTimeout(measure, 50));
     }
 
-    /* ---------- git log: verify the hashes are real ---------- */
-    async function initHashes() {
-      const out = LY.$('[data-hash-check]');
-      if (!out) return;
-      const items = LY.$$('.gitlog__list li');
-      if (!(window.crypto && crypto.subtle)) { out.textContent = 'open the site over https to check'; return; }
-      let ok = 0;
-      for (const li of items) {
-        const msg = li.querySelector('.gitlog__msg').cloneNode(true);
-        const head = msg.querySelector('.head');
-        if (head) head.remove();
-        const hex = await LY.digest('SHA-1', msg.textContent.trim());
-        if (hex && hex.slice(0, 7) === li.querySelector('code').textContent.trim()) ok += 1;
-      }
-      out.textContent = ok + '/' + items.length + ' match';
-      out.classList.toggle('is-ok', ok === items.length);
+    /* ---------- about: numbers count up once ---------- */
+    function initCounters() {
+      LY.$$('[data-count]').forEach((el) => {
+        const to = Number(el.getAttribute('data-count'));
+        const suffix = el.getAttribute('data-suffix') || '';
+        const fmt = (n) => n.toLocaleString('en-CA') + suffix;
+        if (LY.reduced()) { el.textContent = fmt(to); return; }
+        LY.onceVisible(el, () => {
+          const t0 = performance.now();
+          const step = (now) => {
+            const p = Math.min(1, (now - t0) / 1400);
+            el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 4))));
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }, 0.6);
+      });
     }
 
     /* ---------- misc ---------- */
@@ -184,12 +185,6 @@
       if (!email) return;
       LY.$$('[data-email]').forEach((a) => { a.href = 'mailto:' + email; a.textContent = email; });
       LY.$$('[data-copy]').forEach((b) => { if (/@/.test(b.getAttribute('data-copy'))) b.setAttribute('data-copy', email); });
-    }
-
-    function initDemoLink() {
-      LY.$$('[data-run-demo]').forEach((a) => a.addEventListener('click', () => {
-        setTimeout(() => { if (LY.pipeline) LY.pipeline.run('joiner'); }, LY.reduced() ? 0 : 700);
-      }));
     }
 
     function banner() {
@@ -217,8 +212,7 @@
       initScramble();
       initWeight();
       initCopy();
-      initDemoLink();
-      initHashes();
+      initCounters();
       banner();
     }
 

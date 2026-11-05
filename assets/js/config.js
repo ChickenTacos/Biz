@@ -12,6 +12,9 @@ window.LY.config = {
   // Leave empty and the form opens the visitor's email app with the ticket filled in.
   formEndpoint: '',
 
+  // Guide prices per person per month (CAD), shown in the plan calculator.
+  prices: { security: 30, managed: 100, office: 225 },
+
   city: 'Victoria, BC',
   timeZone: 'America/Vancouver',
   tzLabel: 'PT'

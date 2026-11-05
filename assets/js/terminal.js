@@ -4,7 +4,19 @@
   'use strict';
   const LY = window.LY = window.LY || {};
 
-  const SECTIONS = ['home', 'services', 'lifecycle', 'fleet', 'process', 'plans', 'about', 'faq', 'contact'];
+  const SECTIONS = ['home', 'day', 'plans', 'about', 'faq', 'contact'];
+  const CAREER = [
+    ['4e1d42c', 'feat: start Lanyard', '2026'],
+    ['c22604f', 'feat: build an inventory tracker with edit locking to replace a shared spreadsheet', '2026'],
+    ['820522e', 'audit: reconcile 125+ unaccounted computers against disposal records', '2026'],
+    ['444047d', 'ops: coordinate the rollout of 66 new desktops', '2026'],
+    ['7a99ff6', 'docs: write the Windows 11 in-place upgrade SOP for air-gapped machines', '2025'],
+    ['30ac32c', 'ops: run the swap waitlist after non-Windows 11 laptops were cut off overnight', '2025'],
+    ['f00e09c', 'sec: administer smart-card identities for 150+ staff and contractors', '2024'],
+    ['84ce1b6', 'people: hire, onboard and supervise 8 co-op students', '2024'],
+    ['1f77270', 'ops: replace industrial control workstations with no loss of control functions', '2024'],
+    ['427c81a', 'init: join the IT team of a 1,000+ person organization', '2024'],
+  ];
   const FILES = ['readme.txt', 'services.txt', 'plans.txt', 'about.txt', 'contact.sh', 'faq.man'];
 
   LY.terminal = (function () {
@@ -44,10 +56,10 @@
       cat: { d: 'read a file, e.g. cat readme.txt', f(a) {
         const f = (a[0] || '').toLowerCase();
         const files = {
-          'readme.txt': 'Lanyard Systems · managed IT for companies without an IT department.\nEndpoint management, onboarding, offboarding, help desk and IT projects.\nBased in Victoria, BC. On-site across Greater Victoria, remote across Canada.',
-          'services.txt': 'endpoint-management/  every device enrolled, encrypted, patched\nonboarding/           new hires ready on day one\noffboarding/          access closed on time, laptops back clean\nhelp-desk/            one inbox for every IT question\nprojects/             upgrades, hardware, audits, custom tools\nsecurity-baseline.sh  the basics, done properly, checked monthly',
-          'plans.txt': '--fully-managed   we\'re your IT department      monthly, per person\n--co-managed      backup for your IT person     monthly, per device\n--project         one job, done properly        fixed quote',
-          'about.txt': 'Hallam Pak, founder. IT analyst in a secure federal defence environment.\nWindows 11 migrations (air-gapped too), smart-card identities, fleet audits,\nhardware specs and onboarding new staff. Trained in ITIL 4 and Security+.',
+          'readme.txt': 'Lanyard Systems · the IT department for companies that don\'t have one.\nVictoria, BC. On-site across Greater Victoria, remote everywhere else.',
+          'services.txt': 'endpoints      Intune, Autopilot, patching in rings\nonboarding     accounts, access and a laptop, ready on day one\noffboarding    access closed at 17:00:00, data kept, laptop wiped\nsecurity       antivirus + EDR, threat hunting, remediation\nemail          scanning, link checks, phishing quarantine\nbackups        Acronis, Microsoft 365, tested restores\nnetwork        firewall, switches, Wi-Fi\nphones         3CX VoIP, unlimited North America calling\nhelp desk      remote, and on-site in Victoria\nhardware       leased PCs, little upfront cost',
+          'plans.txt': '--secure            security essentials    $30 per person / month\n--managed           managed it             $100 per person / month\n--office-in-a-box   office in a box        $225 per person / month\nguide prices · every quote is custom',
+          'about.txt': 'Hallam Pak, founder. IT analyst in a secure federal defence environment.\nWindows 11 migrations (air-gapped too), smart-card identities, fleet audits,\nhardware specs and onboarding new staff. Try: git log',
           'contact.sh': '#!/bin/sh\necho "' + (LY.config.email || '') + '"\n# or type: contact',
           'faq.man': 'Try: man lanyard',
         };
@@ -131,6 +143,16 @@
         setTimeout(() => go('contact'), 500);
       } },
       man: { d: 'read the manual: man lanyard', f(a) { if ((a[0] || 'lanyard') === 'lanyard') return go('faq'); line('No manual entry for ' + a[0], 'err'); } },
+      git: { d: 'git log: the founder\'s career, as commits', async f(a) {
+        if ((a[0] || 'log') !== 'log') return line('git: only "git log" works here', 'err');
+        for (const [h, msg, yr] of CAREER) {
+          const [type, ...rest] = msg.split(': ');
+          print('<span class="y">*</span> <span class="y">' + h + '</span> ' + (h === CAREER[0][0] ? '<span class="cy">(HEAD → main)</span> ' : '') + '<span class="ok">' + e(type) + ':</span> ' + e(rest.join(': ')) + ' <span class="dim">' + yr + '</span>');
+          await LY.sleep(50);
+        }
+        const sha = await LY.digest('SHA-1', CAREER[1][1]);
+        print(sha ? '<span class="dim">hashes are real SHA-1s of each message · check: ' + sha.slice(0, 7) + ' = ' + CAREER[1][0] + '</span>' : '<span class="dim">hashes are real SHA-1s of each message</span>');
+      } },
       history: { d: 'commands you typed', f() { hist.forEach((h, i) => line(String(i + 1).padStart(4) + '  ' + h)); } },
       echo: { d: 'print text', f(a) { line(a.join(' ')); } },
       pwd: { d: 'where you are', f() { line('/home/visitor'); } },

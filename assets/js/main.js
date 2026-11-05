@@ -32,14 +32,14 @@
     hint.textContent = 'tap the device to switch';
   }
 
-  safe('pipeline', () => LY.pipeline.init());
-  safe('fleet', () => LY.fleet.init());
+  safe('contact', () => LY.contact.init());
+  safe('day', () => LY.day.init());
+  safe('plans', () => LY.plans.init());
   safe('badge', () => {
     LY.$$('[data-barcode]').forEach((svg) => LY.barcode(svg));
     const stage = LY.$('[data-badge-stage]');
     if (stage) LY.badge(stage);
   });
-  safe('contact', () => LY.contact.init());
   safe('terminal', () => LY.terminal.init());
 
   LY.hero = hero;
