@@ -145,11 +145,15 @@
       close({
         keepAddress: true,
         after: () => {
-          if (LY.contact && LY.contact.prefill) LY.contact.prefill({ needs, message, topic });
+          const h = document.getElementById('contact-title');
+          if (h) h.setAttribute('tabindex', '-1');
+          const fill = () => { if (LY.contact && LY.contact.prefill) LY.contact.prefill({ needs, message, topic }); };
+          // change page to the form the same way the menu does, then fill it in
+          if (LY.pages && LY.pages.go('contact', { focus: h, after: fill })) return;
+          fill();
           const sec = document.getElementById('contact');
           if (sec) sec.scrollIntoView({ behavior: LY.reduced() ? 'auto' : 'smooth', block: 'start' });
-          const h = document.getElementById('contact-title');
-          if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+          if (h) h.focus({ preventScroll: true });
         },
       });
     }

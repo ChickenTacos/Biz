@@ -20,6 +20,12 @@ Then open <http://localhost:8000>.
 
 Simple at a glance, with more for anyone who wants to look closer.
 
+**Opening animation.** On a first visit, the lanyard badge drops in on its strap and swings, a quick "setting up" check runs, and the screen lifts away to the home page. It takes about two seconds, and a click, a key or a scroll skips it.
+
+**Pages.** Every section fills the screen. As you scroll, the next page slides up over the current one, which sinks back and dims. A short scroll is enough to change page. Pages taller than the screen, like Services and Pricing, scroll normally to their end first. Dots on the right show where you are, and menu links change page behind a curtain.
+
+The pages, in order:
+
 1. **Hero:** "Your IT department, without hiring one," with a live "Your business today" card that ticks off what we handled and pops up small updates. Every line on the card opens the service behind it.
 2. **What is managed IT?** Three plain answers: we set it up, we keep it safe, we're here when you need us.
 3. **Services:** computers, email and scam protection, Wi-Fi and network security, Microsoft 365, backups, business phones, new staff and leavers, help desk, hardware and leasing. Each card opens a panel with a short explanation and a **live demo** (see below).
@@ -52,6 +58,18 @@ The names, numbers and companies in the demos and the sample report are made up 
 
 Every panel has its own address, so you can link straight to it from an email, a quote or a social post:
 `/#computers`, `/#email`, `/#network`, `/#m365`, `/#backups`, `/#phones`, `/#people`, `/#helpdesk`, `/#hardware`, `/#security`, `/#quiz`, `/#report`, `/#compare`.
+
+Pages can be linked the same way: `/#services`, `/#how`, `/#check`, `/#pricing`, `/#why`, `/#faq`, `/#contact`. A link like this skips the opening animation.
+
+### The opening animation
+
+It plays once per browser tab. To change that, edit the first tag in `index.html`:
+
+```html
+<html lang="en-CA" data-intro="once">
+```
+
+Use `always` to play it on every visit, or `off` to remove it. It never plays for visitors who have asked their device for reduced motion; they also get a normal scrolling page without the page transitions.
 
 ## Before you go live
 
@@ -108,6 +126,9 @@ assets/
   css/main.css        all styles; colours at the top
   js/
     config.js         your settings: email, form endpoint, prices, time zone
+    boot.js           runs before the page draws: decides whether the intro plays
+    intro.js          the opening animation's live status text and skipping
+    pages.js          full-screen pages: transitions, page dots, menu jumps
     ui.js             header, mobile menu, the live hero card, the "?" tips
     modal.js          the pop-up panel: opening, addresses, prev/next, swipe to close
     demos.js          the ten live service demos

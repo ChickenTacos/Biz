@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-CA">
+<html lang="en-CA" data-intro="once">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -23,6 +23,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/martian-mono.woff2" as="font" type="font/woff2" crossorigin>
+<script src="assets/js/boot.js"></script>
 <link rel="stylesheet" href="assets/css/main.css">
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/util.js" defer></script>
@@ -31,6 +33,8 @@
 <script src="assets/js/quiz.js" defer></script>
 <script src="assets/js/plans.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
+<script src="assets/js/pages.js" defer></script>
+<script src="assets/js/intro.js" defer></script>
 <script src="assets/js/ui.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 <script type="application/ld+json">
@@ -50,10 +54,32 @@
 </script>
 </head>
 <body>
+<!-- Opening animation. CSS plays it and hides it; intro.js adds the live text. -->
+<div class="intro" data-intro-screen aria-hidden="true">
+  <div class="intro__layer"></div>
+  <div class="intro__panel">
+    <div class="intro__in">
+      <svg class="intro__mark" viewBox="0 0 64 64" focusable="false">
+        <path class="intro__strap" pathLength="1" d="M-205 -328 29.2 22"/>
+        <path class="intro__strap" pathLength="1" d="M269 -328 34.8 22"/>
+        <g class="intro__badge">
+          <path class="intro__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/>
+          <path class="intro__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/>
+          <rect class="intro__card" x="17.5" y="35" width="29" height="24" rx="3.6"/>
+          <path class="intro__lines" d="M23 45.5h18M23 50.5h10.5"/>
+        </g>
+      </svg>
+      <p class="intro__word"><span class="intro__type">lanyard</span><span class="intro__cur">_</span></p>
+      <p class="intro__status"><span data-intro-msg>Checking computers</span><b data-intro-pct>0%</b></p>
+      <span class="intro__bar"><i></i></span>
+    </div>
+  </div>
+</div>
+
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="head" data-head>
-  <div class="head__in wrap">
+  <div class="head__in">
     <a class="brand" href="#top" aria-label="Lanyard, back to top">
       <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path class="mark__strap" d="M17.5 4.5 29.2 22M46.5 4.5 34.8 22"/><path class="mark__clip" fill-rule="evenodd" d="M27.1 20h9.8a1.6 1.6 0 0 1 1.6 1.6v6.8a1.6 1.6 0 0 1-1.6 1.6h-9.8a1.6 1.6 0 0 1-1.6-1.6v-6.8a1.6 1.6 0 0 1 1.6-1.6zM27.5 21.9h1.2v4.4h-1.2zM30.1 21.9h1.2v4.4h-1.2zM32.7 21.9h1.2v4.4h-1.2zM35.3 21.9h1.2v4.4h-1.2z"/><path class="mark__clip" d="M29 29.5h6v4.3a1.2 1.2 0 0 1-1.2 1.2h-3.6a1.2 1.2 0 0 1-1.2-1.2z"/><rect class="mark__card" x="17.5" y="35" width="29" height="24" rx="3.6"/></svg>
       <span class="brand__word">lanyard<span class="brand__cur">_</span></span>
@@ -79,11 +105,11 @@
 <main id="main">
 
 <!-- HERO -->
-<section class="hero" id="top" aria-labelledby="hero-title">
+<section class="page hero" id="top" data-page="Home" data-tone="dark" aria-labelledby="hero-title">
   <div class="hero__in wrap">
     <div class="hero__copy">
       <p class="eyebrow eyebrow--light">Managed IT · Victoria, BC</p>
-      <h1 class="hero__title" id="hero-title">Your IT department,<br> without hiring one.</h1>
+      <h1 class="hero__title" id="hero-title"><span class="ln"><span>Your IT department,</span></span> <span class="ln"><span>without hiring one.</span></span></h1>
       <p class="hero__lead">We set up, protect and look after your computers, email, Wi-Fi and phones. One monthly price. One team to call.</p>
       <div class="hero__ctas">
         <a class="btn btn--primary" href="#contact">Get a free IT check</a>
@@ -116,13 +142,14 @@
       <p class="board__toast" data-board-toast aria-hidden="true" hidden></p>
     </div>
   </div>
+  <a class="scroll-cue" href="#what"><span>Scroll</span><i aria-hidden="true"></i></a>
 </section>
 
 <!-- WHAT IS MANAGED IT -->
-<section class="section" id="what" aria-labelledby="what-title">
+<section class="page section" id="what" data-page="What we do" data-tone="light" aria-labelledby="what-title">
   <div class="wrap">
     <header class="section__head">
-      <p class="eyebrow">What is managed IT?</p>
+      <p class="eyebrow is-num">What is managed IT?</p>
       <h2 id="what-title">Think of us as your IT department.</h2>
       <p class="section__lead">For one monthly price, we take care of the technology your business runs on. You get on with your work.</p>
     </header>
@@ -150,10 +177,10 @@
 </section>
 
 <!-- SERVICES -->
-<section class="section section--alt" id="services" aria-labelledby="services-title">
+<section class="page section section--alt" id="services" data-page="Services" data-tone="light" aria-labelledby="services-title">
   <div class="wrap">
     <header class="section__head">
-      <p class="eyebrow">Services</p>
+      <p class="eyebrow is-num">Services</p>
       <h2 id="services-title">Everything we look after.</h2>
       <p class="section__lead">Choose what you need, or hand us all of it. Open any service to see it working.</p>
     </header>
@@ -218,10 +245,10 @@
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="section" id="how" aria-labelledby="how-title">
+<section class="page section" id="how" data-page="How it works" data-tone="light" aria-labelledby="how-title">
   <div class="wrap">
     <header class="section__head">
-      <p class="eyebrow">How it works</p>
+      <p class="eyebrow is-num">How it works</p>
       <h2 id="how-title">Getting started is easy.</h2>
     </header>
     <ol class="steps">
@@ -251,11 +278,11 @@
 </section>
 
 <!-- QUIZ BAND -->
-<section class="quizband" aria-labelledby="quiz-title">
+<section class="page quizband" id="check" data-page="IT check" data-tone="dark" aria-labelledby="quiz-title">
   <div class="wrap">
     <div class="quizband__in">
       <div class="quizband__copy">
-        <p class="eyebrow eyebrow--light">1-minute check</p>
+        <p class="eyebrow eyebrow--light is-num">1-minute check</p>
         <h2 id="quiz-title">How healthy is your IT?</h2>
         <p>Six quick questions. You'll get a score and a short list of what to fix first.</p>
         <a class="btn btn--primary" href="#quiz" data-open="quiz">Start the check</a>
@@ -275,10 +302,10 @@
 </section>
 
 <!-- PRICING -->
-<section class="section section--alt" id="pricing" aria-labelledby="pricing-title">
+<section class="page section section--alt" id="pricing" data-page="Pricing" data-tone="light" aria-labelledby="pricing-title">
   <div class="wrap">
     <header class="section__head">
-      <p class="eyebrow">Pricing</p>
+      <p class="eyebrow is-num">Pricing</p>
       <h2 id="pricing-title">Simple monthly plans.</h2>
       <p class="section__lead">Priced per person. No surprise repair bills.</p>
     </header>
@@ -342,10 +369,10 @@
 </section>
 
 <!-- WHY US -->
-<section class="section" id="why" aria-labelledby="why-title">
+<section class="page section" id="why" data-page="Why us" data-tone="light" aria-labelledby="why-title">
   <div class="wrap why">
     <header class="section__head section__head--left">
-      <p class="eyebrow">Why Lanyard</p>
+      <p class="eyebrow is-num">Why Lanyard</p>
       <h2 id="why-title">IT help that speaks your language.</h2>
       <p class="section__lead">We're a Victoria IT company for small and growing businesses. Our job is to keep your technology working, so you don't have to think about it.</p>
     </header>
@@ -371,10 +398,10 @@
 </section>
 
 <!-- FAQ -->
-<section class="section section--alt" id="faq" aria-labelledby="faq-title">
+<section class="page section section--alt" id="faq" data-page="FAQ" data-tone="light" aria-labelledby="faq-title">
   <div class="wrap faq-wrap">
     <header class="section__head section__head--left">
-      <p class="eyebrow">FAQ</p>
+      <p class="eyebrow is-num">FAQ</p>
       <h2 id="faq-title">Questions we hear a lot.</h2>
     </header>
     <div class="faq">
@@ -407,10 +434,10 @@
 </section>
 
 <!-- CONTACT -->
-<section class="cta" id="contact" aria-labelledby="contact-title">
+<section class="page cta" id="contact" data-page="Contact" data-tone="dark" aria-labelledby="contact-title">
   <div class="wrap cta__in">
     <div class="cta__copy">
-      <p class="eyebrow eyebrow--light">Free IT check</p>
+      <p class="eyebrow eyebrow--light is-num">Free IT check</p>
       <h2 id="contact-title">Let's see how we can help.</h2>
       <p class="cta__lead">Tell us a little about your business. We'll book a free IT check and give you a clear plan and price.</p>
       <ul class="cta__list">
@@ -511,6 +538,9 @@
     <p>© <span data-year>2026</span> Lanyard Systems</p>
   </div>
 </footer>
+
+<!-- Covers the screen while a menu link changes page -->
+<div class="curtain" data-curtain aria-hidden="true"><p class="curtain__t"><span data-curtain-n>01</span><b data-curtain-t>Home</b></p></div>
 
 <!-- One dialog, filled from the templates below -->
 <dialog class="sheet" data-sheet aria-labelledby="sheet-title">

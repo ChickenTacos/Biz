@@ -10,12 +10,7 @@
 
     function header() {
       const head = LY.$('[data-head]');
-      const hero = LY.$('.hero');
       if (!head) return;
-      const update = () => head.classList.toggle('is-top', !!hero && window.scrollY < 12 && !root.classList.contains('menu-open'));
-      window.addEventListener('scroll', update, { passive: true });
-      update();
-
       const btn = LY.$('[data-menu-btn]');
       const menu = LY.$('[data-menu]');
       if (!btn || !menu) return;
@@ -24,7 +19,6 @@
         btn.setAttribute('aria-expanded', String(open));
         btn.textContent = open ? 'Close' : 'Menu';
         root.classList.toggle('menu-open', open);
-        update();
       };
       btn.addEventListener('click', () => set(menu.hidden));
       menu.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
@@ -61,8 +55,9 @@
       ];
       let i = 0;
       let count = 3;
+      // only while the first page is the one on screen
       let visible = true;
-      LY.watchVisible(LY.$('.hero'), (v) => { visible = v; });
+      document.addEventListener('ly:page', (e) => { visible = e.detail.index === 0; });
       const show = () => {
         if (visible && !document.hidden && !root.classList.contains('sheet-open')) {
           const [msg, scam] = events[i % events.length];
@@ -76,7 +71,7 @@
         }
         setTimeout(show, 5200);
       };
-      setTimeout(show, 3600);
+      setTimeout(show, (LY.introMs || 0) + 3600);
     }
 
     // The "?" buttons next to plan features. One small explanation at a time,
@@ -175,10 +170,11 @@
       });
     }
 
-    // The gauge on the 1-minute check band only moves while it's on screen
+    // The gauge on the 1-minute check page only moves while that page is showing
     function band() {
       const el = LY.$('.quizband');
-      if (el && !LY.reduced()) LY.watchVisible(el, (v) => el.classList.toggle('is-live', v));
+      if (!el || LY.reduced()) return;
+      document.addEventListener('ly:page', (e) => el.classList.toggle('is-live', e.detail.id === el.id));
     }
 
     function details() {
